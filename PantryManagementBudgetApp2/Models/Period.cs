@@ -14,4 +14,6 @@ namespace PantryManagementBudgetApp2.Models
         public int PeriodMonth { get; set; }
     }
 
+    // PeriodDto
+
 }
