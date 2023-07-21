@@ -25,6 +25,24 @@ namespace PantryManagementBudgetApp2.Models
         {
         }
 
+        // Add "Period" entity to system
+        // All other tables (balances, cashflows) will reference the periods table
+        public DbSet<Period> Periods { get; set; }
+
+        // Add "Balance" entity to system
+        public DbSet<Balance> Balances { get; set; }
+
+        // Add "Cashflow" entity to system
+        public DbSet<Cashflow> Cashflows { get; set; }
+
+        public DbSet<PantryItem> PantryItems { get; set; }
+
+        public DbSet<Inventory> Inventories { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<Purchase> Purchases { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
