@@ -186,6 +186,7 @@
     <Compile Include="Controllers\InventoryDataController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PantryItemDataController.cs" />
+    <Compile Include="Controllers\PurchaseDataController.cs" />
     <Compile Include="Controllers\TagDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
