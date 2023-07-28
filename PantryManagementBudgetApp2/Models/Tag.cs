@@ -15,4 +15,11 @@ namespace PantryManagementBudgetApp2.Models
         //A tag can be applied to many pantry items
         public ICollection<PantryItem> PantryItems { get; set; }
     }
+
+    public class TagDto
+    {
+        public int TagID { get; set; }
+        public string TagName { get; set; }
+
+    }
 }
