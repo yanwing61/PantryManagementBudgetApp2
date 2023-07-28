@@ -25,4 +25,16 @@ namespace PantryManagementBudgetApp2.Models
         public decimal RevolvingCrdt { get; set; }
         public decimal InstalmentCrdt { get; set; }
     }
+
+    public class BalanceDto
+    {
+        public int BalanceId { get; set; }
+        public int PeriodYear { get; set; }
+        public int PeriodMonth { get; set; }
+        public int PeriodId { get; set; }
+        public decimal ChequingAcct { get; set; }
+        public decimal SavingsAcct { get; set; }
+        public decimal RevolvingCrdt { get; set; }
+        public decimal InstalmentCrdt { get; set; }
+    }
 }

@@ -23,4 +23,14 @@ namespace PantryManagementBudgetApp2.Models
         // Amount of cash outflow e.g. necessary & discretionary spending
         public decimal Expense { get; set; }
     }
+
+    public class CashflowDto
+    {
+        public int CashflowId { get; set; }
+        public int PeriodYear { get; set; }
+        public int PeriodMonth { get; set; }
+        public int PeriodId { get; set; }
+        public decimal Budget { get; set; }
+        public decimal Expense { get; set; }
+    }
 }
