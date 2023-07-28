@@ -114,6 +114,75 @@ namespace PantryManagementBudgetApp2.Controllers
             return Ok(PurchaseDto);
         }
 
+        // POST: api/PurchaseData/UpdatePurchase/5
+        [ResponseType(typeof(void))]
+        [HttpGet]
+        public IHttpActionResult UpdatePurchase(int id, Purchase purchase)
+        {
+            if (!ModalState.IsValid)
+            {
+                return BadRequest(ModalState);
+            }
+
+            if (id != purchase.PurchaseID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(purchase).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DBUpdateConcurrencyException)
+            {
+                if (!PurchaseExists(id))
+                {
+                    return NnotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/PurchaseData/AddPurchase
+        [ResponseType(typeof(Purchase))]
+        [HttpPost]
+        public IHttpActionResult AddPurchase(Purchase purchase)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Purchases.Add(purchase);
+            db.SaveChange();
+
+            return CreateAtRoute("DefaultApi", new { id = purchase.PurchaseID }, purchase);
+        }
+
+        //POST: api/PurchaseData/DeletePurchase/5
+        [ResponseType(typeof(Purchase)]
+        [HttpPost]
+        public IHttpActionResult DeletePurchase(int id)
+        {
+            Purchase purchase = db.Purchases.Find(id);
+            if (purchase == null)
+            {
+                return NotFound();
+            }
+
+            db.Purchases.Remove(purchase);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
         /*
         // GET: api/PurchaseData
         public IQueryable<Purchase> GetPurchases()
@@ -199,6 +268,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
             return Ok(purchase);
         }
+        */
 
         protected override void Dispose(bool disposing)
         {
@@ -213,6 +283,6 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             return db.Purchases.Count(e => e.PurchaseID == id) > 0;
         }
-        */
+        
     }
 }
