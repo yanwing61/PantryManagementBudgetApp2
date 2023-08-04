@@ -1,6 +1,6 @@
 ## Pantry Management and Budgeting App
 
-Welcome to the Pantry Management and Budgeting App! This web application is designed to help you manage your pantry items, track your expenses, and maintain a budget for your household. This document will provide you with an overview of the identity models used in the application.
+Welcome to the Pantry Management and Budgeting App! This web application is designed to help you manage your inventory of pantry items, track your expenses, and maintain a budget.
 
 ##### Custom Entities
 
