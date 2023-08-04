@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -116,12 +117,12 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: api/PurchaseData/UpdatePurchase/5
         [ResponseType(typeof(void))]
-        [HttpGet]
+        [HttpPost]
         public IHttpActionResult UpdatePurchase(int id, Purchase purchase)
         {
-            if (!ModalState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return BadRequest(ModalState);
+                return BadRequest(ModelState);
             }
 
             if (id != purchase.PurchaseID)
@@ -135,11 +136,11 @@ namespace PantryManagementBudgetApp2.Controllers
             {
                 db.SaveChanges();
             }
-            catch (DBUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException)
             {
                 if (!PurchaseExists(id))
                 {
-                    return NnotFound();
+                    return NotFound();
                 }
                 else
                 {
@@ -161,13 +162,13 @@ namespace PantryManagementBudgetApp2.Controllers
             }
 
             db.Purchases.Add(purchase);
-            db.SaveChange();
+            db.SaveChanges();
 
-            return CreateAtRoute("DefaultApi", new { id = purchase.PurchaseID }, purchase);
+            return CreatedAtRoute("DefaultApi", new { id = purchase.PurchaseID }, purchase);
         }
 
         //POST: api/PurchaseData/DeletePurchase/5
-        [ResponseType(typeof(Purchase)]
+        [ResponseType(typeof(Purchase))]
         [HttpPost]
         public IHttpActionResult DeletePurchase(int id)
         {
@@ -285,6 +286,6 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             return db.Purchases.Count(e => e.PurchaseID == id) > 0;
         }
-        
+
     }
 }

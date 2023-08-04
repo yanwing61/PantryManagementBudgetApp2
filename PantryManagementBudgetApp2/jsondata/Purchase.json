@@ -1,11 +1,11 @@
 ﻿{
-  //"PurchaseID": 4,
+  "PurchaseID": 4,
   "UnitPrice": 3.14,
-  "Qty": 5,
+  "Qty": 2000,
   "PeriodId": 2,
   "PeriodYear": 2023,
   "PeriodMonth": 2,
-  "PantryItemID": 1,
-  "PantryItemName": "Coffee",
+  "PantryItemID": 2,
+  "PantryItemName": "Sticky Rice",
   "PantryItemCurrentQty": 10
 }
