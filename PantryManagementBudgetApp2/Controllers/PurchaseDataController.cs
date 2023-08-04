@@ -184,6 +184,8 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         /*
+         * Preious auto-scaffolded code - commented out for reference.
+         * 
         // GET: api/PurchaseData
         public IQueryable<Purchase> GetPurchases()
         {
