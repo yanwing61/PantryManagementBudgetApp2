@@ -50,7 +50,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// </returns>
         /// <param name="id">PantryItem Primary Key</param>
         /// <example>
-        /// GET: api/TagData/ListTagsForPantryItem/6
+        /// GET: api/TagData/ListTagsForPantryItem/1
         /// </example>
         [HttpGet]
         [ResponseType(typeof(TagDto))]
