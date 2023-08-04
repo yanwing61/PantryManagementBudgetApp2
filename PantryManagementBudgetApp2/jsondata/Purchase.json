@@ -1,0 +1,11 @@
+﻿{
+  //"PurchaseID": 4,
+  "UnitPrice": 3.14,
+  "Qty": 5,
+  "PeriodId": 2,
+  "PeriodYear": 2023,
+  "PeriodMonth": 2,
+  "PantryItemID": 1,
+  "PantryItemName": "Coffee",
+  "PantryItemCurrentQty": 10
+}
