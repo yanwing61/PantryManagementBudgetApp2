@@ -5,18 +5,19 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
 namespace PantryManagementBudgetApp2.Controllers
 {
-    public class TagController : Controller
+    public class PeriodController : Controller
     {
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
 
-        static TagController()
+        static PeriodController()
         {
             HttpClientHandler handler = new HttpClientHandler()
             {
@@ -24,120 +25,110 @@ namespace PantryManagementBudgetApp2.Controllers
                 //cookies are manually set in RequestHeader
                 UseCookies = false
             };
-
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44302/api/");
+            client.BaseAddress = new Uri("https://localhost:44394/api/");
         }
 
-        /// <summary>
-        /// Grabs the authentication cookie sent to this controller.
-        /// </summary>
         private void GetApplicationCookie()
         {
             string token = "";
-            //HTTP client is set up to be reused, otherwise it will exhaust server resources.
-            //This is a bit dangerous because a previously authenticated cookie could be cached for
-            //a follow-up request from someone else. Reset cookies in HTTP client before grabbing a new one.
             client.DefaultRequestHeaders.Remove("Cookie");
             if (!User.Identity.IsAuthenticated) return;
 
             HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
             if (cookie != null) token = cookie.Value;
 
-            //collect token as it is submitted to the controller
-            //use it to pass along to the WebAPI.
-            Debug.WriteLine("Token Submitted is : " + token);
+            Debug.WriteLine("Token Submitted Is : " + token);
             if (token != "") client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
 
             return;
         }
 
-        // GET: Tag/List
+        // GET: Period/List
+        [Authorize]
         public ActionResult List()
         {
-            //objective: communicate with tag data api to retrieve a list of tags
-            // curl https://localhost:44302/api/TagData/ListTags
+            GetApplicationCookie(); //get token credentials
+            // Objetive: Communicate with period data API to retriee list of periods
+            // curl https://localhost:44394/api/PeriodData/ListPeriods
 
-            string url = "TagData/ListTags";
-
+            string url = "PeriodData/ListPeriods";
             HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<PeriodDto> periods = response.Content.ReadAsAsync<IEnumerable<PeriodDto>>().Result;
 
-            //Debug.WriteLine("The response code is ");
-            //Debug.WriteLine(response.StatusCode);
-
-            IEnumerable<TagDto> Tags = response.Content.ReadAsAsync<IEnumerable<TagDto>>().Result;
-            //Debug.WriteLine("Number of tag received: ");
-            //Debug.WriteLine(Tags.Count());
-
-            return View(Tags);
+            return View(periods);
         }
 
-        // GET: Tag/Details/5
+        // GET: Period/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
-            DetailsTag ViewModel = new DetailsTag();
+            GetApplicationCookie(); //get token credentials
+            // Objective: Communicate with period data API to retrieve one period record
+            // curl https://localhost:44394/api/PeriodData/FindPeriod/{id}
 
-            //objective: communicate with tag data api to retrieve one tag
-            // curl https://localhost:44302/api/TagData/FindTag/{id}
+            DetailsPeriod ViewModel = new DetailsPeriod();
 
-            string url = "TagData/FindTag/" + id;
-
+            string url = "PeriodData/FindPeriod/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
+            PeriodDto SelectedPeriod = response.Content.ReadAsAsync<PeriodDto>().Result;
 
-            //Debug.WriteLine("The response code is ");
-            //Debug.WriteLine(response.StatusCode);
-
-            TagDto SelectedTag = response.Content.ReadAsAsync<TagDto>().Result;
-            //Debug.WriteLine("tag received: ");
-            //Debug.WriteLine(SelectedTag.TagName);
-
-            ViewModel.SelectedTag = SelectedTag;
-
-
-            //Show all pantry items under this tag
-            url = "PantryItemData/ListPantryItemsForTag/" + id;
+            ViewModel.SelectedPeriod = SelectedPeriod;
+            //showcase info about balances related to this period
+            //send a request to gather info about balances related to particular period ID
+            url = "BalanceData/ListBalancesForPeriod/" + id;
             response = client.GetAsync(url).Result;
-            IEnumerable<PantryItemDto> CarryTags = response.Content.ReadAsAsync<IEnumerable<PantryItemDto>>().Result;
+            IEnumerable<BalanceDto> RelatedBalances = response.Content.ReadAsAsync<IEnumerable<BalanceDto>>().Result;
 
-            ViewModel.CarryTags = CarryTags;
+            ViewModel.RelatedBalances = RelatedBalances;
+
+            //showcase info about cashflows related to this period
+            //send aa requeast to gather info about cashflows relted to particular period ID
+            url = "CashflowData/ListCashflowsForPeriod/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<CashflowDto> RelatedCashflows = response.Content.ReadAsAsync<IEnumerable<CashflowDto>>().Result;
+
+            ViewModel.RelatedCashflows = RelatedCashflows;
 
             return View(ViewModel);
         }
 
+        // Error Page
         public ActionResult Error()
         {
             return View();
         }
 
-        // GET: Tag/New
+        // GET: Period/New
         [Authorize]
         public ActionResult New()
         {
-            GetApplicationCookie();
             return View();
         }
 
-        // POST: Tag/Create
+        // POST: Period/Create
         [HttpPost]
         [Authorize]
-        public ActionResult Create(Tag Tag)
+        public ActionResult Create(Period period)
         {
-            GetApplicationCookie();
-            Debug.WriteLine("the json payload is :");
-            //objective: add a new tag into our system using the API
+            GetApplicationCookie(); //get token credentials
+            Debug.WriteLine("JSON payload is:");
+            // Debug.WriteLine(period.PeriodMonth)
 
-            string url = "TagData/AddTag";
+            // Objective: Add new period record to system using API
+            // curl -H "Content-Type:application/json" -d @period.json https://localhost:44394/api/PeriodData/AddPeriod
 
-            string jsonpayload = jss.Serialize(Tag);
+            string url = "PeriodData/AddPeriod";
+
+            string jsonpayload = jss.Serialize(period);
 
             Debug.WriteLine(jsonpayload);
-
-            //curl -H "Content-Type:application/json" -d @Tag.json https://localhost:44302/api/Tagdata/addTag 
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
 
             HttpResponseMessage response = client.PostAsync(url, content).Result;
+
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("List");
@@ -146,28 +137,27 @@ namespace PantryManagementBudgetApp2.Controllers
             {
                 return RedirectToAction("Error");
             }
-
         }
 
-        // GET: Tag/Edit/5
+        // GET: Period/Edit/5
         [Authorize]
         public ActionResult Edit(int id)
         {
-            GetApplicationCookie();
-            string url = "Tagdata/findTag/" + id;
+            string url = "PeriodData/FindPeriod/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            TagDto selectedTag = response.Content.ReadAsAsync<TagDto>().Result;
-            return View(selectedTag);
+            PeriodDto selectedperiod = response.Content.ReadAsAsync<PeriodDto>().Result;
+
+            return View(selectedperiod);
         }
 
-        // POST: Tag/Update/5
+        // POST: Period/Update/5
         [HttpPost]
         [Authorize]
-        public ActionResult Update(int id, Tag Tag)
+        public ActionResult Update(int id, Period period)
         {
-            GetApplicationCookie();
-            string url = "Tagdata/updateTag/" + id;
-            string jsonpayload = jss.Serialize(Tag);
+            GetApplicationCookie(); //get token credentials 
+            string url = "PeriodData/UpdatePeriod/" + id;
+            string jsonpayload = jss.Serialize(period);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
@@ -182,24 +172,23 @@ namespace PantryManagementBudgetApp2.Controllers
             }
         }
 
-        // GET: Tag/Delete/5
+        // GET: Period/Delete/5
         [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
-            GetApplicationCookie();
-            string url = "Tagdata/findTag/" + id;
+            string url = "PeriodData/FindPeriod/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            TagDto selectedTag = response.Content.ReadAsAsync<TagDto>().Result;
-            return View(selectedTag);
+            PeriodDto selectedperiod = response.Content.ReadAsAsync<PeriodDto>().Result;
+            return View(selectedperiod);
         }
 
-        // POST: Tag/Delete/5
+        // POST: Period/Delete/5
         [HttpPost]
         [Authorize]
         public ActionResult Delete(int id)
         {
-            GetApplicationCookie();
-            string url = "Tagdata/deleteTag/" + id;
+            GetApplicationCookie(); //get token credentials
+            string url = "PeriodData/DeletePeriod/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
