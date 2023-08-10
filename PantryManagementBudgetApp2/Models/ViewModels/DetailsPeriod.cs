@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace PersonalFinanceApplication.Models.ViewModels
+namespace PantryManagementBudgetApp2.Models.ViewModels
 {
     public class DetailsPeriod
     {
