@@ -182,6 +182,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\PeriodController.cs" />
+    <Compile Include="Controllers\CashflowControer.cs" />
     <Compile Include="Controllers\BalanceDataController.cs" />
     <Compile Include="Controllers\CashflowDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -192,6 +194,7 @@
     <Compile Include="Controllers\PantryItemDataController.cs" />
     <Compile Include="Controllers\PeriodDataController.cs" />
     <Compile Include="Controllers\PurchaseDataController.cs" />
+    <Compile Include="Controllers\BalanceController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\TagDataController.cs" />
     <Compile Include="Global.asax.cs">
