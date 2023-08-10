@@ -1,5 +1,5 @@
-using PersonalFinanceApplication.Models;
-using PersonalFinanceApplication.Models.ViewModels;
+using PantryManagementBudgetApp2.Models.ViewModels;
+using PantryManagementBudgetApp2.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
