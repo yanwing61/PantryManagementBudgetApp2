@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
-namespace PersonalFinanceApplication.Controllers
+namespace PantryManagementBudgetApp2.Controllers
 {
     public class CashflowController : Controller
     {
