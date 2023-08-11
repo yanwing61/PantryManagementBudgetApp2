@@ -193,6 +193,7 @@
     <Compile Include="Controllers\PantryItemController.cs" />
     <Compile Include="Controllers\PantryItemDataController.cs" />
     <Compile Include="Controllers\PeriodDataController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\PurchaseDataController.cs" />
     <Compile Include="Controllers\BalanceController.cs" />
     <Compile Include="Controllers\TagController.cs" />
@@ -298,6 +299,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Inventory\" />
     <Folder Include="Views\PantryItem\" />
+    <Folder Include="Views\Purchase\" />
     <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
