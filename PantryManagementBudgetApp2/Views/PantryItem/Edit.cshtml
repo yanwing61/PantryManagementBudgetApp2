@@ -1,0 +1,31 @@
+﻿﻿﻿@model PantryManagementBudgetApp2.Models.PantryItemDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Pantry Item</h2>
+
+<form action="/PantryItem/Update/@Model.PantryItemID" method="POST">
+
+    <div style="display:none;">
+        <input type="text" name="PantryItemID" value="@Model.PantryItemID" />
+    </div>
+
+    <div>
+        <label>Name:</label> <input type="text" name="PantryItemName" value="@Model.PantryItemName" />
+    </div>
+    <div>
+        <label>Current Quantity:</label> <input type="number" name="PantryItemCurrentQty" value="@Model.PantryItemCurrentQty" />
+    </div>
+    <div>
+        <label>Unit Price</label> <input type="number" step="0.01" name="PantryItemUnitPrice" value="@Model.PantryItemUnitPrice" />
+    </div>
+    <div>
+
+    </div>
+    <div>
+        <input type="submit" value="Update Pantry Item" />
+
+    </div>
+</form>

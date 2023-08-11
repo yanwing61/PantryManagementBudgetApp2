@@ -1,0 +1,15 @@
+﻿﻿﻿@model IEnumerable<PantryManagementBudgetApp2.Models.TagDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Tag List</h2>
+
+<a id="add" href="/Tag/New">+ New Tag</a>
+
+@foreach (var Tag in Model)
+{
+    <h3><a href="/Tag/details/@Tag.TagID">@Tag.TagName</a></h3>
+
+}

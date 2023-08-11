@@ -1,0 +1,16 @@
+﻿﻿﻿@model PantryManagementBudgetApp2.Models.PantryItemDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this pantry item?</h2>
+<div><a href="/PantryItem/List">Cancel</a></div>
+
+<h2>@Model.PantryItemName</h2>
+<div>Current Quantity: @Model.PantryItemCurrentQty</div>
+<div>Unit Price: CAD$@Model.PantryItemUnitPrice</div>
+
+<form action="/PantryItem/Delete/@Model.PantryItemID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>
+

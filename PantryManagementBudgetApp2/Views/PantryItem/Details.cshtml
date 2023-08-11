@@ -1,0 +1,49 @@
+﻿﻿@model PantryManagementBudgetApp2.Models.ViewModels.DetailsPantryItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div style="margin-top: 20px"><a href="/PantryItem/List">Back to list</a></div>
+<br />
+<div><a href="/PantryItem/Edit/@Model.SelectedPantryItem.PantryItemID">Update</a></div>
+<br />
+<div><a href="/PantryItem/DeleteConfirm/@Model.SelectedPantryItem.PantryItemID">Delete</a></div>
+
+<h2>@Model.SelectedPantryItem.PantryItemName</h2>
+<div>Current Quantity: @Model.SelectedPantryItem.PantryItemCurrentQty</div>
+<div>Unit Price: CAD$@Model.SelectedPantryItem.PantryItemUnitPrice</div>
+
+<div style="margin-top: 50px">
+    <h3>Tags associated with @Model.SelectedPantryItem.PantryItemName</h3>
+    @foreach (var tag in Model.AssociatedTags)
+    {
+        <a href="/Tag/Details/@tag.TagID">@tag.TagName</a>
+
+        <a style="color:red" href="/PantryItem/Unassociate/@Model.SelectedPantryItem.PantryItemID?TagID=@tag.TagID">[x]</a>
+        <br />
+    }
+
+    <div>
+        <h4>Add new tag to @Model.SelectedPantryItem.PantryItemName</h4>
+        <form method="post" action="/PantryItem/Associate/@Model.SelectedPantryItem.PantryItemID">
+            <select name="TagID">
+                @foreach (var tag in Model.NotAssociatedTags)
+                {
+                    <option value="@tag.TagID">@tag.TagName</option>
+                }
+            </select>
+            <input type="submit" value="Add new tag" />
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <h3>Inventories related to @Model.SelectedPantryItem.PantryItemName</h3>
+    @foreach (var inventory in Model.RelatedInventories)
+    {
+        <a href="/Inventory/Details/@inventory.InventoryID">@inventory.InventoryLogDate  - Qty: @inventory.InventoryQty</a>
+        <br />
+    }
+</div>

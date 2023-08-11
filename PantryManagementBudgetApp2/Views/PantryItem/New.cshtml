@@ -1,0 +1,25 @@
+﻿﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Pantry Item</h2>
+
+<form action="/PantryItem/Create" method="POST">
+    <div>
+        <label>Name:</label> <input type="text" name="PantryItemName" />
+    </div>
+    <div>
+        <label>Current Quantity:</label> <input type="number" name="PantryItemCurrentQty" />
+    </div>
+    <div>
+        <label>Unit Price</label> <input type="number" step="0.01" name="PantryItemUnitPrice" />
+    </div>
+    <div>
+
+    </div>
+    <div>
+        <input type="submit" value="Add Pantry Item" />
+
+    </div>
+</form>

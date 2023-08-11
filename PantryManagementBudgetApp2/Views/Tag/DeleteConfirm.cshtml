@@ -1,0 +1,13 @@
+﻿﻿﻿@model PantryManagementBudgetApp2.Models.TagDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this tag?</h2>
+<div><a href="/Tag/List">Cancel</a></div>
+
+<h3 id="tagname">@Model.TagName</h3>
+
+<form action="/Tag/Delete/@Model.TagID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>

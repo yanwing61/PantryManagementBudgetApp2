@@ -1,0 +1,17 @@
+﻿﻿﻿@model IEnumerable<PantryManagementBudgetApp2.Models.PantryItemDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Pantry Item List</h2>
+
+<a id="add" href="/PantryItem/New">+ New Pantry Item</a>
+
+@foreach (var pantryitem in Model)
+{
+
+    <h3><a href="/PantryItem/details/@pantryitem.PantryItemID">@pantryitem.PantryItemName</a></h3>
+    <div>Current Quantity: @pantryitem.PantryItemCurrentQty</div>
+    <div>Unit Price: CAD$@pantryitem.PantryItemUnitPrice</div>
+}

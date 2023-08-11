@@ -1,0 +1,22 @@
+﻿﻿﻿@model PantryManagementBudgetApp2.Models.TagDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Tag</h2>
+
+<form action="/Tag/Update/@Model.TagID" method="POST">
+    <div style="display:none;">
+        <input type="text" name="TagID" value="@Model.TagID" />
+    </div>
+
+    <div>
+        <label>Name:</label> <input type="text" name="TagName" value="@Model.TagName" />
+    </div>
+
+    <div>
+        <input type="submit" value="Update Tag" />
+
+    </div>
+</form>

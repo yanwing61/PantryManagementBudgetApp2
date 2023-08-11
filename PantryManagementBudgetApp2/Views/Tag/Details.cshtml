@@ -1,0 +1,22 @@
+﻿﻿@model PantryManagementBudgetApp2.Models.ViewModels.DetailsTag
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div style="margin-top: 20px"><a href="/Tag/List">Back to list</a></div>
+<br />
+<div><a href="/Tag/Edit/@Model.SelectedTag.TagID">Update</a></div>
+<br />
+<div><a href="/Tag/DeleteConfirm/@Model.SelectedTag.TagID">Delete</a></div>
+
+<h2>@Model.SelectedTag.TagName</h2>
+
+<div>
+    <h3>Pantry Items with this tag:</h3>
+    @foreach (var pantryitem in Model.CarryTags)
+    {
+        <a href="/PantryItem/Details/@pantryitem.PantryItemID">@pantryitem.PantryItemName</a>
+        <br />
+    }
+</div>
