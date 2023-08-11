@@ -29,6 +29,23 @@ namespace PantryManagementBudgetApp2.Controllers
             client.BaseAddress = new Uri("https://localhost:44394/api/");
         }
 
+        private void GetApplicationCookie()
+        {
+            string token = "";
+            client.DefaultRequestHeaders.Remove("Cookie");
+            if (!User.Identity.IsAuthenticated) return;
+
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+            Debug.WriteLine("Token Submitted Is : " + token);
+            if (token != "") client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+
+            return;
+        }
+
+        
+
         /*
         
         // GET: Purchase
