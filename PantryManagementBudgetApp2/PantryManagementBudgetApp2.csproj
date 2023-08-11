@@ -296,10 +296,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Balance\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Balance\" />
     <Folder Include="Views\Cashflow\" />
     <Folder Include="Views\Inventory\" />
     <Folder Include="Views\PantryItem\" />
