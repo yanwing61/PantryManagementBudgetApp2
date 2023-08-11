@@ -4,26 +4,26 @@
 }
 
 <nav style="margin-bottom: 20px;">
-    <a href="/Balance/List">Go back</a> |
-    <a href="/Balance/Edit/@Model.BalanceId">Update</a> |
-    <a style="color:#ab2020;" href="/Balance/DeleteConfirm/@Model.BalanceId">Delete</a>
+    <a href="/Cashflow/List">Go back</a> |
+    <a href="/Cashflow/Edit/@Model.CashflowId">Update</a> |
+    <a style="color:#ab2020;" href="/Cashflow/DeleteConfirm/@Model.CashflowId">Delete</a>
 </nav>
 <h2>@Model.PeriodYear-<span id="monthFormatted"></span></h2>
 <div style="margin-top: 20px;">
-    <h3>Assets</h3>
-    <div>Chequing Account Balance: $@Model.ChequingAcct</div>
-    <div>Savings Account Balance: $@Model.SavingsAcct</div>
-    <div><strong>Total: $@(Model.ChequingAcct + Model.SavingsAcct)</strong></div>
+    <h3>Inflow</h3>
+    <div>Primary Income: $@Model.PrimaryIncome</div>
+    <div>Miscellaneous Income: $@Model.MiscIncome</div>
+    <div><strong>Total: $@(Model.PrimaryIncome + Model.MiscIncome)</strong></div>
 </div>
 <div style="margin-top: 20px;">
-    <h3>Liabilities</h3>
-    <div>Revolving Credit Balance: $@Model.RevolvingCrdt</div>
-    <div>Instalment Credit Balance: $@Model.InstalmentCrdt</div>
-    <div><strong>Total: $@(Model.RevolvingCrdt + Model.InstalmentCrdt)</strong></div>
+    <h3>Outflow</h3>
+    <div>Necessary Expenditure: $@Model.NecessarySpend</div>
+    <div>Discretionary Expenditure: $@Model.DiscretionarySpend</div>
+    <div><strong>Total: $@(Model.NecessarySpend + Model.DiscretionarySpend)</strong></div>
 </div>
 <div style="margin-top: 20px;">
-    <h3>Net Worth</h3>
-    <div><strong>Assets less Liabilities: $@(Model.ChequingAcct + Model.SavingsAcct - (Model.RevolvingCrdt + Model.InstalmentCrdt))</strong></div>
+    <h3>Savings</h3>
+    <div><strong>Inflows less Outflows: $@(Model.PrimaryIncome + Model.MiscIncome - (Model.NecessarySpend + Model.DiscretionarySpend))</strong></div>
 </div>
 
 <script>
