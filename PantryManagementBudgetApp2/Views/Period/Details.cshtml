@@ -1,0 +1,80 @@
+@model PantryManagementBudgetApp2.Models.ViewModels.DetailsPeriod
+@{
+    ViewBag.Title = "Details";
+}
+
+<nav style="margin-bottom: 20px;">
+    <a href="/Period/List">Go back</a> |
+    <a href="/Period/Edit/@Model.SelectedPeriod.PeriodId">Update</a> |
+    <a style="color:#ab2020;" href="/Period/DeleteConfirm/@Model.SelectedPeriod.PeriodId">Delete</a>
+</nav>
+
+<h2>@Model.SelectedPeriod.PeriodYear-<span id="monthFormatted"></span></h2>
+<div>Year: @Model.SelectedPeriod.PeriodYear</div>
+<div>Month: <span id="monthOut"></span></div>
+
+<div style="margin-top: 25px">
+    @foreach(var balance in Model.RelatedBalances)
+            {
+                <a href="/Balance/Details/@balance.BalanceId">View Balance</a>
+            }
+</div>
+
+<div style="margin-top: 25px">
+    @foreach (var cashflow in Model.RelatedCashflows)
+    {
+        <a href="/Cashflow/Details/@cashflow.CashflowId">View Cashflow</a>
+    }
+</div>
+
+<script>
+    let monthOut = document.getElementById("monthOut");
+    let monthFormatted = document.getElementById("monthFormatted");
+
+    switch (@Model.SelectedPeriod.PeriodMonth) {
+        case 1:
+            monthOut.innerHTML = "January";
+            break;
+        case 2:
+            monthOut.innerHTML = "February";
+            break;
+        case 3:
+            monthOut.innerHTML = "March";
+            break;
+        case 4:
+            monthOut.innerHTML = "April";
+            break;
+        case 5:
+            monthOut.innerHTML = "May";
+            break;
+        case 6:
+            monthOut.innerHTML = "June";
+            break;
+        case 7:
+            monthOut.innerHTML = "July";
+            break;
+        case 8:
+            monthOut.innerHTML = "August";
+            break;
+        case 9:
+            monthOut.innerHTML = "September";
+            break;
+        case 10:
+            monthOut.innerHTML = "October";
+            break;
+        case 11:
+            monthOut.innerHTML = "November";
+            break;
+        case 12:
+            monthOut.innerHTML = "December";
+            break;
+        default:
+            monthOut.innerHTML = "Invalid Month";
+    }
+
+    if (@Model.SelectedPeriod.PeriodMonth < 10) {
+        monthFormatted.innerHTML = "0" + @Model.SelectedPeriod.PeriodMonth;
+    } else {
+        monthFormatted.innerHTML = @Model.SelectedPeriod.PeriodMonth;
+    }
+</script>

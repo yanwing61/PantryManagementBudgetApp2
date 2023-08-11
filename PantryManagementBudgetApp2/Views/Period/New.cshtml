@@ -1,0 +1,33 @@
+@model IEnumerable<PantryManagementBudgetApp2.Models.PeriodDto>
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Enter New Balance</h2>
+
+<form action="/Balance/Create" method="post">
+    <div>
+        <label>Period:</label>
+        <select name="PeriodId">
+            @foreach (var periods in Model)
+            {
+                <option value="@periods.PeriodId">@periods.PeriodYear-@periods.PeriodMonth</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Chequing Account:</label> <input type="number" name="ChequingAcct" />
+    </div>
+    <div>
+        <label>Savings Account:</label> <input type="number" name="SavingsAcct" />
+    </div>
+    <div>
+        <label>Revolving Credit:</label> <input type="number" name="RevolvingCrdt" />
+    </div>
+    <div>
+        <label>Instalment Credit:</label> <input type="number" name="InstalmentCrdt" />
+    </div>
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+</form>

@@ -1,0 +1,12 @@
+@model PantryManagementBudgetApp2.Models.PeriodDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this month?</h2>
+<a href="/Period/List">Cancel</a>
+<h2>@Model.PeriodYear-@Model.PeriodMonth</h2>
+
+<form action="/Period/Delete/@Model.PeriodId" method="post">
+    <input type="submit" value="Delete" />
+</form>

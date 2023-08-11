@@ -415,31 +415,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Balance\DeleteConfirm.cshtml" />
-    <Content Include="Views\Inventory\DeleteConfirm.cshtml" />
-    <Content Include="Views\Inventory\Details.cshtml" />
-    <Content Include="Views\Inventory\Edit.cshtml" />
-    <Content Include="Views\Inventory\Error.cshtml" />
-    <Content Include="Views\Inventory\List.cshtml" />
-    <Content Include="Views\Inventory\New.cshtml" />
-    <Content Include="Views\PantryItem\Error.cshtml" />
-    <Content Include="Views\Purchase\Error.cshtml" />
-    <Content Include="Views\Tag\Error.cshtml" />
-    <Content Include="Views\Balance\Details.cshtml" />
-    <Content Include="Views\Balance\Edit.cshtml" />
-    <Content Include="Views\Balance\Error.cshtml" />
-    <Content Include="Views\Balance\List.cshtml" />
-    <Content Include="Views\Balance\New.cshtml" />
-    <Content Include="Views\PantryItem\DeleteConfirm.cshtml" />
-    <Content Include="Views\PantryItem\Details.cshtml" />
-    <Content Include="Views\PantryItem\Edit.cshtml" />
-    <Content Include="Views\PantryItem\List.cshtml" />
-    <Content Include="Views\PantryItem\New.cshtml" />
-    <Content Include="Views\Tag\DeleteConfirm.cshtml" />
-    <Content Include="Views\Tag\Details.cshtml" />
-    <Content Include="Views\Tag\Edit.cshtml" />
-    <Content Include="Views\Tag\List.cshtml" />
-    <Content Include="Views\Tag\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

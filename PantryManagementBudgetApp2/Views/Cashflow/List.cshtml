@@ -1,0 +1,14 @@
+@model IEnumerable<PantryManagementBudgetApp2.Models.CashflowDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Cashflows</h2>
+<a href="/Cashflow/New">Add new cashflow</a>
+@foreach(var cashflow in Model)
+{
+    <hr />
+    <h3><a href="/Cashflow/Details/@cashflow.CashflowId">@cashflow.PeriodYear-@cashflow.PeriodMonth</a></h3>
+    <div>You saved <strong>$@(cashflow.PrimaryIncome + cashflow.MiscIncome - cashflow.NecessarySpend - cashflow.DiscretionarySpend)</strong> this month!</div>
+    <div><a href="/Cashflow/Details/@cashflow.CashflowId">View detailed breakdown &raquo;</a></div>
+}

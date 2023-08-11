@@ -1,0 +1,37 @@
+@model PantryManagementBudgetApp2.Models.CashflowDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<nav style="margin-bottom: 20px;">
+    <a href="/Cashflow/List">Go back</a> |
+    <a href="/Cashflow/Edit/@Model.CashflowId">Update</a> |
+    <a style="color:#ab2020;" href="/Cashflow/DeleteConfirm/@Model.CashflowId">Delete</a>
+</nav>
+<h2>@Model.PeriodYear-<span id="monthFormatted"></span></h2>
+<div style="margin-top: 20px;">
+    <h3>Inflow</h3>
+    <div>Primary Income: $@Model.PrimaryIncome</div>
+    <div>Miscellaneous Income: $@Model.MiscIncome</div>
+    <div><strong>Total: $@(Model.PrimaryIncome + Model.MiscIncome)</strong></div>
+</div>
+<div style="margin-top: 20px;">
+    <h3>Outflow</h3>
+    <div>Necessary Expenditure: $@Model.NecessarySpend</div>
+    <div>Discretionary Expenditure: $@Model.DiscretionarySpend</div>
+    <div><strong>Total: $@(Model.NecessarySpend + Model.DiscretionarySpend)</strong></div>
+</div>
+<div style="margin-top: 20px;">
+    <h3>Savings</h3>
+    <div><strong>Inflows less Outflows: $@(Model.PrimaryIncome + Model.MiscIncome - (Model.NecessarySpend + Model.DiscretionarySpend))</strong></div>
+</div>
+
+<script>
+    let monthFormatted = document.getElementById("monthFormatted");
+
+    if (@Model.PeriodMonth < 10) {
+        monthFormatted.innerHTML = "0" + @Model.PeriodMonth;
+    } else {
+        monthFormatted.innerHTML = @Model.PeriodMonth;
+    }
+</script>

@@ -1,0 +1,37 @@
+@model PantryManagementBudgetApp2.Models.PeriodDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Month</h2>
+
+<form action="/Period/Update/@Model.PeriodId" method="post">
+    <div style="display:none">
+        @* Pass through period ID *@
+        <input type="text" name="PeriodId" value="@Model.PeriodId" />
+    </div>
+
+    <div>
+        <label>Year:</label> <input type="number" name="PeriodYear" value="@Model.PeriodYear" />
+    </div>
+    <div>
+        <label>Month:</label>
+        <select name="PeriodMonth">
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Month" />
+    </div>
+</form>

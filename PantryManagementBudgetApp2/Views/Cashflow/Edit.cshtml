@@ -1,0 +1,38 @@
+@model PantryManagementBudgetApp2.Models.ViewModels.UpdateCashflow
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Cashflow</h2>
+
+<form action="/Cashflow/Update/@Model.SelectedCashflow.CashflowId" method="post">
+    <div style="display:none">
+        @* Pass through cashflow ID *@
+        <input type="text" name="CashflowId" value="@Model.SelectedCashflow.CashflowId" />
+    </div>
+
+    <div>
+        <label>Period:</label>
+        <select name="PeriodId">
+            @foreach (var periods in Model.PeriodOptions)
+            {
+                <option value="@periods.PeriodId">@periods.PeriodYear-@periods.PeriodMonth</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Primary Income:</label> <input type="number" name="PrimaryIncome" value="@Model.SelectedCashflow.PrimaryIncome" />
+    </div>
+    <div>
+        <label>Miscellaneous Income:</label> <input type="number" name="MiscIncome" value="@Model.SelectedCashflow.MiscIncome" />
+    </div>
+    <div>
+        <label>Necessary Expenditure:</label> <input type="number" name="NecessarySpend" value="@Model.SelectedCashflow.NecessarySpend" />
+    </div>
+    <div>
+        <label>Discretionary Expenditure:</label> <input type="number" name="DiscretionarySpend" value="@Model.SelectedCashflow.DiscretionarySpend" />
+    </div>
+    <div>
+        <input type="submit" value="Update Cashflow" />
+    </div>
+</form>

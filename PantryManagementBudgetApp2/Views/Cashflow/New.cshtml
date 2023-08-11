@@ -1,0 +1,33 @@
+@model IEnumerable<PantryManagementBudgetApp2.Models.PeriodDto>
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Enter New Cashflow</h2>
+
+<form action="/Cashflow/Create" method="post">
+    <div>
+        <label>Period:</label>
+        <select name="PeriodId">
+            @foreach (var periods in Model)
+            {
+                <option value="@periods.PeriodId">@periods.PeriodYear-@periods.PeriodMonth</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Primary Income:</label> <input type="number" name="PrimaryIncome" />
+    </div>
+    <div>
+        <label>Miscellaneous Income:</label> <input type="number" name="MiscIncome" />
+    </div>
+    <div>
+        <label>Necessary Expenditure:</label> <input type="number" name="NecessarySpend" />
+    </div>
+    <div>
+        <label>Discretionary Expenditure:</label> <input type="number" name="DiscretionarySpend" />
+    </div>
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+</form>
