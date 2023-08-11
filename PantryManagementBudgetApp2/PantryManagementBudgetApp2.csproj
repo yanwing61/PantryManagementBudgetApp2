@@ -302,12 +302,12 @@
     <Content Include="Views\Inventory\Error.cshtml" />
     <Content Include="Views\Inventory\List.cshtml" />
     <Content Include="Views\Inventory\New.cshtml" />
+    <Content Include="Views\PantryItem\Error.cshtml" />
+    <Content Include="Views\Purchase\Error.cshtml" />
+    <Content Include="Views\Tag\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\PantryItem\" />
-    <Folder Include="Views\Purchase\" />
-    <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
