@@ -1,14 +1,12 @@
-@model IEnumerable<PantryManagementBudgetApp2.Models.BalanceDto>
+@model IEnumerable<PantryManagementBudgetApp2.Models.PeriodDto>
 @{
     ViewBag.Title = "List";
 }
 
-<h2>Balances</h2>
-<a href="/Balance/New">Add new balance</a>
-@foreach(var balance in Model)
+<h2>Months</h2>
+<a href="/Period/New">Add a new month</a>
+@foreach(var period in Model)
 {
     <hr />
-    <h3><a href="/Balance/Details/@balance.BalanceId">@balance.PeriodYear-@balance.PeriodMonth</a></h3>
-    <div>Your net worth this month is <strong>$@(balance.ChequingAcct + balance.SavingsAcct - balance.RevolvingCrdt - balance.InstalmentCrdt)</strong></div>
-    <div><a href="/Balance/Details/@balance.BalanceId">View detailed breakdown &raquo;</a></div>
+    <div><a href="/Period/Details/@period.PeriodId">@period.PeriodYear-@period.PeriodMonth</a></div>
 }
