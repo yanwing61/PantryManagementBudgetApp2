@@ -3,9 +3,9 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Enter New Balance</h2>
+<h2>Enter New Cashflow</h2>
 
-<form action="/Balance/Create" method="post">
+<form action="/Cashflow/Create" method="post">
     <div>
         <label>Period:</label>
         <select name="PeriodId">
@@ -16,16 +16,16 @@
         </select>
     </div>
     <div>
-        <label>Chequing Account:</label> <input type="number" name="ChequingAcct" />
+        <label>Primary Income:</label> <input type="number" name="PrimaryIncome" />
     </div>
     <div>
-        <label>Savings Account:</label> <input type="number" name="SavingsAcct" />
+        <label>Miscellaneous Income:</label> <input type="number" name="MiscIncome" />
     </div>
     <div>
-        <label>Revolving Credit:</label> <input type="number" name="RevolvingCrdt" />
+        <label>Necessary Expenditure:</label> <input type="number" name="NecessarySpend" />
     </div>
     <div>
-        <label>Instalment Credit:</label> <input type="number" name="InstalmentCrdt" />
+        <label>Discretionary Expenditure:</label> <input type="number" name="DiscretionarySpend" />
     </div>
     <div>
         <input type="submit" value="Submit" />
