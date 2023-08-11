@@ -10,5 +10,6 @@ namespace PantryManagementBudgetApp2.Models.ViewModels
         public PeriodDto SelectedPeriod { get; set; }
         public IEnumerable<BalanceDto> RelatedBalances { get; set; }
         public IEnumerable<CashflowDto> RelatedCashflows { get; set; }
+        public IEnumerable<PurchaseDto> RelatedPurchases { get; set; }
     }
 }

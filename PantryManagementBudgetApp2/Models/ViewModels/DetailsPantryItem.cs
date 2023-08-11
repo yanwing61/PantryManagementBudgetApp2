@@ -11,6 +11,8 @@ namespace PantryManagementBudgetApp2.Models.ViewModels
 
         public IEnumerable<InventoryDto> RelatedInventories { get; set; }
 
+        public IEnumerable<PurchaseDto> RelatedPurchases { get; set; }
+
         public IEnumerable<TagDto> AssociatedTags { get; set; }
 
         public IEnumerable<TagDto> NotAssociatedTags { get; set; }
