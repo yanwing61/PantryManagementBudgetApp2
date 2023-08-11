@@ -1,13 +1,36 @@
-﻿using System;
+using PantryManagementBudgetApp2.Models.ViewModels;
+using PantryManagementBudgetApp2.Models;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Resources;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace PantryManagementBudgetApp2.Controllers
 {
     public class PurchaseController : Controller
     {
+        private static readonly HttpClient client;
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
+
+        static PurchaseController()
+        {
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false,
+                //cookies are manually set in RequestHeader
+                UseCookies = false
+            };
+            client = new HttpClient(handler);
+            client.BaseAddress = new Uri("https://localhost:44394/api/");
+        }
+
+        /*
+        
         // GET: Purchase
         public ActionResult Index()
         {
@@ -85,5 +108,7 @@ namespace PantryManagementBudgetApp2.Controllers
                 return View();
             }
         }
+
+        */
     }
 }
