@@ -302,13 +302,23 @@
     <Content Include="Views\Balance\Error.cshtml" />
     <Content Include="Views\Balance\List.cshtml" />
     <Content Include="Views\Balance\New.cshtml" />
+    <Content Include="Views\Cashflow\DeleteConfirm.cshtml" />
+    <Content Include="Views\Cashflow\Details.cshtml" />
+    <Content Include="Views\Cashflow\Edit.cshtml" />
+    <Content Include="Views\Cashflow\Error.cshtml" />
+    <Content Include="Views\Cashflow\List.cshtml" />
+    <Content Include="Views\Cashflow\New.cshtml" />
+    <Content Include="Views\Period\DeleteConfirm.cshtml" />
+    <Content Include="Views\Period\Details.cshtml" />
+    <Content Include="Views\Period\Edit.cshtml" />
+    <Content Include="Views\Period\Error.cshtml" />
+    <Content Include="Views\Period\List.cshtml" />
+    <Content Include="Views\Period\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cashflow\" />
     <Folder Include="Views\Inventory\" />
     <Folder Include="Views\PantryItem\" />
-    <Folder Include="Views\Period\" />
     <Folder Include="Views\Purchase\" />
     <Folder Include="Views\Tag\" />
   </ItemGroup>
