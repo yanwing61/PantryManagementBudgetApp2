@@ -3,12 +3,12 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Update Balance</h2>
+<h2>Update Cashflow</h2>
 
-<form action="/Balance/Update/@Model.SelectedBalance.BalanceId" method="post">
+<form action="/Cashflow/Update/@Model.SelectedCashflow.CashflowId" method="post">
     <div style="display:none">
-        @* Pass through balance ID *@
-        <input type="text" name="BalanceId" value="@Model.SelectedBalance.BalanceId" />
+        @* Pass through cashflow ID *@
+        <input type="text" name="CashflowId" value="@Model.SelectedCashflow.CashflowId" />
     </div>
 
     <div>
@@ -19,21 +19,20 @@
                 <option value="@periods.PeriodId">@periods.PeriodYear-@periods.PeriodMonth</option>
             }
         </select>
-
     </div>
     <div>
-        <label>Chequing Account:</label> <input type="number" name="ChequingAcct" value="@Model.SelectedBalance.ChequingAcct" />
+        <label>Primary Income:</label> <input type="number" name="PrimaryIncome" value="@Model.SelectedCashflow.PrimaryIncome" />
     </div>
     <div>
-        <label>Savings Account:</label> <input type="number" name="SavingsAcct" value="@Model.SelectedBalance.SavingsAcct" />
+        <label>Miscellaneous Income:</label> <input type="number" name="MiscIncome" value="@Model.SelectedCashflow.MiscIncome" />
     </div>
     <div>
-        <label>Revolving Credit:</label> <input type="number" name="RevolvingCrdt" value="@Model.SelectedBalance.RevolvingCrdt" />
+        <label>Necessary Expenditure:</label> <input type="number" name="NecessarySpend" value="@Model.SelectedCashflow.NecessarySpend" />
     </div>
     <div>
-        <label>Instalment Credit:</label> <input type="number" name="InstalmentCrdt" value="@Model.SelectedBalance.InstalmentCrdt" />
+        <label>Discretionary Expenditure:</label> <input type="number" name="DiscretionarySpend" value="@Model.SelectedCashflow.DiscretionarySpend" />
     </div>
     <div>
-        <input type="submit" value="Update Balance" />
+        <input type="submit" value="Update Cashflow" />
     </div>
 </form>
