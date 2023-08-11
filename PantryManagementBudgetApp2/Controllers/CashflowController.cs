@@ -15,7 +15,7 @@ namespace PantryManagementBudgetApp2.Controllers
     {
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
-        
+
         static CashflowController()
         {
             HttpClientHandler handler = new HttpClientHandler()

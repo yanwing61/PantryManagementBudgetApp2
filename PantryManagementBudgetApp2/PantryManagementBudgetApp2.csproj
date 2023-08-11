@@ -182,8 +182,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CashflowController.cs" />
     <Compile Include="Controllers\PeriodController.cs" />
-    <Compile Include="Controllers\CashflowControer.cs" />
     <Compile Include="Controllers\BalanceDataController.cs" />
     <Compile Include="Controllers\CashflowDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -299,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Balance\" />
     <Folder Include="Views\Cashflow\" />
     <Folder Include="Views\Inventory\" />
     <Folder Include="Views\PantryItem\" />
