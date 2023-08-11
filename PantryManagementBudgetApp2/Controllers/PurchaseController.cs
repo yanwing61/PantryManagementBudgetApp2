@@ -68,9 +68,9 @@ namespace PantryManagementBudgetApp2.Controllers
 
             string url = "PurchaseData/FindPurchase/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            PurchaseDto selectedPurchase = response.Content.ReadAsAsync<PurchaseDto>().Result;
+            PurchaseDto SelectedPurchase = response.Content.ReadAsAsync<PurchaseDto>().Result;
 
-            return View(selectedPurchase);
+            return View(SelectedPurchase);
         }
 
         // Error Page
@@ -84,12 +84,21 @@ namespace PantryManagementBudgetApp2.Controllers
         public ActionResult New()
         {
             // Info about all periods in system
-            // GET: api/PeriodData/ListPeriods
-            string url = "PeriodData/ListPeriods";
-            HttpResponseMessage response = client.GetAsync(url).Result;
-            IEnumerable<PeriodDto> periodOptions = response.Content.ReadAsAsync<IEnumerable<PeriodDto>>().Result;
+            string periodUrl = "PeriodData/ListPeriods";
+            HttpResponseMessage periodResponse = client.GetAsync(periodUrl).Result;
+            IEnumerable<PeriodDto> PeriodOptions = periodResponse.Content.ReadAsAsync<IEnumerable<PeriodDto>>().Result;
 
-            return View(periodOptions);
+            string pantryItemUrl = "PantryItemData/ListPantryItems";  // Assuming this endpoint exists
+            HttpResponseMessage pantryItemResponse = client.GetAsync(pantryItemUrl).Result;
+            IEnumerable<PantryItemDto> PantryItemOptions = pantryItemResponse.Content.ReadAsAsync<IEnumerable<PantryItemDto>>().Result;
+
+            CreatePurchase CreatePurchase = new CreatePurchase
+            {
+                PeriodOptions = PeriodOptions,
+                PantryItemOptions = PantryItemOptions
+            };
+
+            return View(CreatePurchase);
         }
 
         // POST: Purchase/Create
@@ -153,7 +162,7 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             GetApplicationCookie(); //get token credentials
             string url = "PurchaseData/UpdatePurchase/" + id;
-            string jsonpayload = jss.Serialize(Purchase);
+            string jsonpayload = jss.Serialize(purchase);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;

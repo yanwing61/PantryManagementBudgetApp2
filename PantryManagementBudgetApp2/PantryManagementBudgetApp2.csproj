@@ -228,6 +228,7 @@
     <Compile Include="Models\Period.cs" />
     <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\ViewModels\CreatePurchase.cs" />
     <Compile Include="Models\ViewModels\DetailsPantryItem.cs" />
     <Compile Include="Models\ViewModels\DetailsPeriod.cs" />
     <Compile Include="Models\ViewModels\DetailsTag.cs" />
