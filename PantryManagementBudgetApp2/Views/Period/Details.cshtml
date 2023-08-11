@@ -1,80 +1,37 @@
-@model PantryManagementBudgetApp2.Models.ViewModels.DetailsPeriod
+@model PantryManagementBudgetApp2.Models.PeriodDto
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Edit";
 }
 
-<nav style="margin-bottom: 20px;">
-    <a href="/Period/List">Go back</a> |
-    <a href="/Period/Edit/@Model.SelectedPeriod.PeriodId">Update</a> |
-    <a style="color:#ab2020;" href="/Period/DeleteConfirm/@Model.SelectedPeriod.PeriodId">Delete</a>
-</nav>
+<h2>Update Month</h2>
 
-<h2>@Model.SelectedPeriod.PeriodYear-<span id="monthFormatted"></span></h2>
-<div>Year: @Model.SelectedPeriod.PeriodYear</div>
-<div>Month: <span id="monthOut"></span></div>
+<form action="/Period/Update/@Model.PeriodId" method="post">
+    <div style="display:none">
+        @* Pass through period ID *@
+        <input type="text" name="PeriodId" value="@Model.PeriodId" />
+    </div>
 
-<div style="margin-top: 25px">
-    @foreach(var balance in Model.RelatedBalances)
-            {
-                <a href="/Balance/Details/@balance.BalanceId">View Balance</a>
-            }
-</div>
-
-<div style="margin-top: 25px">
-    @foreach (var cashflow in Model.RelatedCashflows)
-    {
-        <a href="/Cashflow/Details/@cashflow.CashflowId">View Cashflow</a>
-    }
-</div>
-
-<script>
-    let monthOut = document.getElementById("monthOut");
-    let monthFormatted = document.getElementById("monthFormatted");
-
-    switch (@Model.SelectedPeriod.PeriodMonth) {
-        case 1:
-            monthOut.innerHTML = "January";
-            break;
-        case 2:
-            monthOut.innerHTML = "February";
-            break;
-        case 3:
-            monthOut.innerHTML = "March";
-            break;
-        case 4:
-            monthOut.innerHTML = "April";
-            break;
-        case 5:
-            monthOut.innerHTML = "May";
-            break;
-        case 6:
-            monthOut.innerHTML = "June";
-            break;
-        case 7:
-            monthOut.innerHTML = "July";
-            break;
-        case 8:
-            monthOut.innerHTML = "August";
-            break;
-        case 9:
-            monthOut.innerHTML = "September";
-            break;
-        case 10:
-            monthOut.innerHTML = "October";
-            break;
-        case 11:
-            monthOut.innerHTML = "November";
-            break;
-        case 12:
-            monthOut.innerHTML = "December";
-            break;
-        default:
-            monthOut.innerHTML = "Invalid Month";
-    }
-
-    if (@Model.SelectedPeriod.PeriodMonth < 10) {
-        monthFormatted.innerHTML = "0" + @Model.SelectedPeriod.PeriodMonth;
-    } else {
-        monthFormatted.innerHTML = @Model.SelectedPeriod.PeriodMonth;
-    }
-</script>
+    <div>
+        <label>Year:</label> <input type="number" name="PeriodYear" value="@Model.PeriodYear" />
+    </div>
+    <div>
+        <label>Month:</label>
+        <select name="PeriodMonth">
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Month" />
+    </div>
+</form>
