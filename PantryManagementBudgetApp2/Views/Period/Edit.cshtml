@@ -1,39 +1,37 @@
-@model PantryManagementBudgetApp2.Models.ViewModels.UpdateBalance
+@model PantryManagementBudgetApp2.Models.PeriodDto
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Update Balance</h2>
+<h2>Update Month</h2>
 
-<form action="/Balance/Update/@Model.SelectedBalance.BalanceId" method="post">
+<form action="/Period/Update/@Model.PeriodId" method="post">
     <div style="display:none">
-        @* Pass through balance ID *@
-        <input type="text" name="BalanceId" value="@Model.SelectedBalance.BalanceId" />
+        @* Pass through period ID *@
+        <input type="text" name="PeriodId" value="@Model.PeriodId" />
     </div>
 
     <div>
-        <label>Period:</label>
-        <select name="PeriodId">
-            @foreach (var periods in Model.PeriodOptions)
-            {
-                <option value="@periods.PeriodId">@periods.PeriodYear-@periods.PeriodMonth</option>
-            }
+        <label>Year:</label> <input type="number" name="PeriodYear" value="@Model.PeriodYear" />
+    </div>
+    <div>
+        <label>Month:</label>
+        <select name="PeriodMonth">
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
         </select>
-
     </div>
     <div>
-        <label>Chequing Account:</label> <input type="number" name="ChequingAcct" value="@Model.SelectedBalance.ChequingAcct" />
-    </div>
-    <div>
-        <label>Savings Account:</label> <input type="number" name="SavingsAcct" value="@Model.SelectedBalance.SavingsAcct" />
-    </div>
-    <div>
-        <label>Revolving Credit:</label> <input type="number" name="RevolvingCrdt" value="@Model.SelectedBalance.RevolvingCrdt" />
-    </div>
-    <div>
-        <label>Instalment Credit:</label> <input type="number" name="InstalmentCrdt" value="@Model.SelectedBalance.InstalmentCrdt" />
-    </div>
-    <div>
-        <input type="submit" value="Update Balance" />
+        <input type="submit" value="Update Month" />
     </div>
 </form>
