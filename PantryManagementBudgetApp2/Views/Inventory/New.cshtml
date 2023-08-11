@@ -1,0 +1,39 @@
+﻿﻿﻿@model IEnumerable<PantryManagementBudgetApp2.Models.PantryItemDto>
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+<h2>Create Inventory</h2>
+
+<form action="/Inventory/Create" method="POST">
+
+    <div>
+        <label>Quantity:</label> <input type="number" name="InventoryQty" />
+    </div>
+    <div>
+        <label>Log Date:</label> <input type="datetime" name="InventoryLogDate" />
+    </div>
+
+    <input type="hidden" id="clientTimezoneOffset" name="ClientTimezoneOffset" />
+
+    <div>
+        <label>Pantry Item:</label>
+        <select name="PantryItemID">
+            @foreach (var pantryitem in Model)
+            {
+                <option value="@pantryitem.PantryItemID">@pantryitem.PantryItemName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Add Inventory" />
+
+    </div>
+</form>
+
+<script>
+    // Set the value of the hidden field
+    document.getElementById('clientTimezoneOffset').value = new Date().getTimezoneOffset();
+</script>

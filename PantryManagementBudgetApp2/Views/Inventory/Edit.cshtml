@@ -1,0 +1,44 @@
+﻿﻿﻿@model PantryManagementBudgetApp2.Models.ViewModels.UpdateInventory
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Inventory</h2>
+
+<form action="/Inventory/Update/@Model.SelectedInventory.InventoryID" method="POST">
+
+    <div style="display:none;">
+        <input type="text" name="InventoryID" value="@Model.SelectedInventory.InventoryID" />
+    </div>
+
+    <div>
+        <label>Quantity:</label> <input type="number" name="InventoryQty" value="@Model.SelectedInventory.InventoryQty" />
+    </div>
+    <div>
+        <label>Log Date:</label> <input type="datetime" name="InventoryLogDate" value="@Model.SelectedInventory.InventoryLogDate" />
+    </div>
+
+    <input type="hidden" id="clientTimezoneOffset" name="ClientTimezoneOffset" />
+
+    <div>
+        <label>Pantry Item:</label>
+        <select name="PantryItemID" value="@Model.SelectedInventory.PantryItemID">
+            @foreach (var pantryitem in Model.PantryItemOptions)
+            {
+                <option value="@pantryitem.PantryItemID" @(pantryitem.PantryItemID == Model.SelectedInventory.PantryItemID ? "selected" : "")>
+                    @pantryitem.PantryItemName
+                </option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Inventory" />
+
+    </div>
+</form>
+
+<script>
+    // Set the value of the hidden field
+    document.getElementById('clientTimezoneOffset').value = new Date().getTimezoneOffset();
+</script>

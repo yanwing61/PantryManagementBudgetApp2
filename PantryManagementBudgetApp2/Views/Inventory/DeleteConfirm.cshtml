@@ -1,0 +1,16 @@
+﻿@model PantryManagementBudgetApp2.Models.InventoryDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this inventory?</h2>
+<div><a href="/Inventory/List">Cancel</a></div>
+
+<h3>@Model.InventoryID | @Model.InventoryLogDate</h3>
+<div>Quantity: @Model.InventoryQty</div>
+<div>Pantry Item: @Model.PantryItemName</div>
+<br />
+<form action="/Inventory/Delete/@Model.InventoryID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>
+

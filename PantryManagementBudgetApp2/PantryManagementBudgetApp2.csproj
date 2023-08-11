@@ -296,10 +296,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Inventory\DeleteConfirm.cshtml" />
+    <Content Include="Views\Inventory\Details.cshtml" />
+    <Content Include="Views\Inventory\Edit.cshtml" />
+    <Content Include="Views\Inventory\Error.cshtml" />
+    <Content Include="Views\Inventory\List.cshtml" />
+    <Content Include="Views\Inventory\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Inventory\" />
     <Folder Include="Views\PantryItem\" />
     <Folder Include="Views\Purchase\" />
     <Folder Include="Views\Tag\" />

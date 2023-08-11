@@ -1,0 +1,14 @@
+﻿﻿@model PantryManagementBudgetApp2.Models.InventoryDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<div style="margin-top: 20px"><a href="/Inventory/List">Back to list</a></div>
+<br />
+<div><a href="/Inventory/Edit/@Model.InventoryID">Update</a></div>
+<br />
+<div><a href="/Inventory/DeleteConfirm/@Model.InventoryID">Delete</a></div>
+
+<h2>@Model.InventoryLogDate</h2>
+<div>Quantity: @Model.InventoryQty</div>
+<div>Pantry Item: <a href="/PantryItem/Details/@Model.PantryItemID">@Model.PantryItemName</a></div>
