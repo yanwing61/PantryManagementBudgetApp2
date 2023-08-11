@@ -3,13 +3,13 @@
     ViewBag.Title = "DeleteConfirm";
 }
 
-<h2>Are you sure you want to delete this balance record?</h2>
-<a href="/Balance/List">Cancel</a>
+<h2>Are you sure you want to delete this cashflow record?</h2>
+<a href="/Cashflow/List">Cancel</a>
 <h2>@Model.PeriodYear-@Model.PeriodMonth</h2>
-<div>Asset: $@(Model.ChequingAcct + Model.SavingsAcct)</div>
-<div>Liability: $@(Model.RevolvingCrdt + Model.InstalmentCrdt)</div>
-<div>Net: $@(Model.ChequingAcct + Model.SavingsAcct - (Model.RevolvingCrdt + Model.InstalmentCrdt))</div>
+<div>Inflow: $@(Model.PrimaryIncome + Model.MiscIncome)</div>
+<div>Outflow: $@(Model.NecessarySpend + @Model.DiscretionarySpend)</div>
+<div>Net: $@(Model.PrimaryIncome + Model.MiscIncome - (@Model.NecessarySpend + @Model.DiscretionarySpend))</div>
 
-<form action="/Balance/Delete/@Model.BalanceId" method="post">
+<form action="/Cashflow/Delete/@Model.CashflowId" method="post">
     <input type="submit" value="Delete" />
 </form>
