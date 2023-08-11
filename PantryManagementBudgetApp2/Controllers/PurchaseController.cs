@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -16,7 +15,7 @@ namespace PantryManagementBudgetApp2.Controllers
     {
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
-
+        
         static PurchaseController()
         {
             HttpClientHandler handler = new HttpClientHandler()
@@ -49,7 +48,7 @@ namespace PantryManagementBudgetApp2.Controllers
         public ActionResult List()
         {
             GetApplicationCookie(); //get token credentials
-            // Objective: Communicate with purchase data API to retrieve list of purchases
+            // Objective: Communicate with Purchase data API to retrieve list of Purchases
             // curl https://localhost:44394/api/PurchaseData/ListPurchases
 
             string url = "PurchaseData/ListPurchases";
@@ -64,33 +63,14 @@ namespace PantryManagementBudgetApp2.Controllers
         public ActionResult Details(int id)
         {
             GetApplicationCookie(); //get token credentials
-            // Objective: Communicate with purchase data API to retrieve one purchase record
+            // Objective: Communicate with Purchase data API to retrieve one Purchase record
             // curl https://localhost:44394/api/PurchaseData/FindPurchase/{id}
-
-            DetailsPurchase ViewModel = new DetailsPurchase();
 
             string url = "PurchaseData/FindPurchase/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            PurchaseDto SelectedPurchase = response.Content.ReadAsAsync<PurchaseDto>().Result;
+            PurchaseDto selectedPurchase = response.Content.ReadAsAsync<PurchaseDto>().Result;
 
-            ViewModel.SelectedPurchase = SelectedPurchase;
-            //showcase info about balances related to this purchase
-            //send a request to gather info about balances related to particular purchase ID
-            url = "BalanceData/ListBalancesForPurchase/" + id;
-            response = client.GetAsync(url).Result;
-            IEnumerable<BalanceDto> RelatedBalances = response.Content.ReadAsAsync<IEnumerable<BalanceDto>>().Result;
-
-            ViewModel.RelatedBalances = RelatedBalances;
-
-            //showcase info about cashflows related to this purchase
-            //send aa requeast to gather info about cashflows relted to particular purchase ID
-            url = "CashflowData/ListCashflowsForPurchase/" + id;
-            response = client.GetAsync(url).Result;
-            IEnumerable<CashflowDto> RelatedCashflows = response.Content.ReadAsAsync<IEnumerable<CashflowDto>>().Result;
-
-            ViewModel.RelatedCashflows = RelatedCashflows;
-
-            return View(ViewModel);
+            return View(selectedPurchase);
         }
 
         // Error Page
@@ -103,7 +83,13 @@ namespace PantryManagementBudgetApp2.Controllers
         [Authorize]
         public ActionResult New()
         {
-            return View();
+            // Info about all periods in system
+            // GET: api/PeriodData/ListPeriods
+            string url = "PeriodData/ListPeriods";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<PeriodDto> periodOptions = response.Content.ReadAsAsync<IEnumerable<PeriodDto>>().Result;
+
+            return View(periodOptions);
         }
 
         // POST: Purchase/Create
@@ -113,10 +99,10 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             GetApplicationCookie(); //get token credentials
             Debug.WriteLine("JSON payload is:");
-            // Debug.WriteLine(purchase.PurchaseMonth)
+            // Debug.WriteLine(purchase.Inflow);
 
             // Objective: Add new purchase record to system using API
-            // curl -H "Content-Type:application/json" -d @purchase.json https://localhost:44394/api/PurchaseData/AddPurchase
+            // curl -H "Content-type:application/json" -d @record.json http://localhost:44394/api/PurchaseData/AddPurchase
 
             string url = "PurchaseData/AddPurchase";
 
@@ -143,11 +129,21 @@ namespace PantryManagementBudgetApp2.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
+            UpdatePurchase ViewModel = new UpdatePurchase();
+
+            // existing purchase info
             string url = "PurchaseData/FindPurchase/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            PurchaseDto selectedpurchase = response.Content.ReadAsAsync<PurchaseDto>().Result;
+            PurchaseDto SelectedPurchase = response.Content.ReadAsAsync<PurchaseDto>().Result;
+            ViewModel.SelectedPurchase = SelectedPurchase;
 
-            return View(selectedpurchase);
+            // also include all periods to choose from when updating this Purchase record
+            url = "PeriodData/ListPeriods/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<PeriodDto> PeriodOptions = response.Content.ReadAsAsync<IEnumerable<PeriodDto>>().Result;
+            ViewModel.PeriodOptions = PeriodOptions;
+
+            return View(ViewModel);
         }
 
         // POST: Purchase/Update/5
@@ -155,9 +151,9 @@ namespace PantryManagementBudgetApp2.Controllers
         [Authorize]
         public ActionResult Update(int id, Purchase purchase)
         {
-            GetApplicationCookie(); //get token credentials 
+            GetApplicationCookie(); //get token credentials
             string url = "PurchaseData/UpdatePurchase/" + id;
-            string jsonpayload = jss.Serialize(purchase);
+            string jsonpayload = jss.Serialize(Purchase);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
@@ -185,7 +181,7 @@ namespace PantryManagementBudgetApp2.Controllers
         // POST: Purchase/Delete/5
         [HttpPost]
         [Authorize]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             GetApplicationCookie(); //get token credentials
             string url = "PurchaseData/DeletePurchase/" + id;
@@ -202,89 +198,5 @@ namespace PantryManagementBudgetApp2.Controllers
                 return RedirectToAction("Error");
             }
         }
-
-        
-
-        /*
-        
-        // GET: Purchase
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Purchase/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Purchase/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Purchase/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Purchase/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Purchase/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Purchase/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Purchase/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        */
     }
 }
