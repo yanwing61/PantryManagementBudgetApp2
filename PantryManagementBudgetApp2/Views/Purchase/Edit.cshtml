@@ -5,15 +5,15 @@
 
 <h2>Update Purchase</h2>
 
-<form action="/Purchase/Update/@Model.SelectedPurchase.PurchaseId" method="post">
+<form action="/Purchase/Update/@Model.SelectedPurchase.PurchaseID" method="post">
     <div style="display:none">
         @* Pass through purchase ID *@
-        <input type="text" name="PurchaseId" value="@Model.SelectedPurchase.PurchaseId" />
+        <input type="text" name="PurchaseID" value="@Model.SelectedPurchase.PurchaseID" />
     </div>
 
     <div>
         <label>Period:</label>
-        <select name="PeriodId">
+        <select name="PeriodId" value="@Model.SelectedPurchase.PeriodId">
             @foreach (var periods in Model.PeriodOptions)
             {
                 <option value="@periods.PeriodId">@periods.PeriodYear-@periods.PeriodMonth</option>
@@ -21,18 +21,27 @@
         </select>
 
     </div>
+
     <div>
-        <label>Chequing Account:</label> <input type="number" name="ChequingAcct" value="@Model.SelectedPurchase.ChequingAcct" />
+        <label>Pantry Item:</label>
+        <select name="PantryItemID" value="@Model.SelectedPurchase.PantryItemID">
+            @foreach (var pantryitem in Model.PantryItemOptions)
+            {
+                <option value="@pantryitem.PantryItemID" @(pantryitem.PantryItemID == Model.SelectedPurchase.PantryItemID ? "selected" : "")>
+                    @pantryitem.PantryItemName
+                </option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Unit Price:</label> <input type="number" name="PurchaseUnitPrice" value="@Model.SelectedPurchase.UnitPrice"/>
     </div>
     <div>
-        <label>Savings Account:</label> <input type="number" name="SavingsAcct" value="@Model.SelectedPurchase.SavingsAcct" />
+        <label>Quantity:</label> <input type="number" name="PurchaseQty" value="@Model.SelectedPurchase.Qty"/>
     </div>
-    <div>
-        <label>Revolving Credit:</label> <input type="number" name="RevolvingCrdt" value="@Model.SelectedPurchase.RevolvingCrdt" />
-    </div>
-    <div>
-        <label>Instalment Credit:</label> <input type="number" name="InstalmentCrdt" value="@Model.SelectedPurchase.InstalmentCrdt" />
-    </div>
+
+
     <div>
         <input type="submit" value="Update Purchase" />
     </div>

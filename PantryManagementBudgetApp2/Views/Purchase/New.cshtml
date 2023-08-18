@@ -8,15 +8,21 @@
 <form action="/Purchase/Create" method="post">
     <div>
         <label>Period:</label>
-        <select name="PurchaseId">
+        <select name="PeriodId">
             @foreach (var periods in Model)
             {
-                <option value="@purchase.PurchaseId">@purchase.PeriodYear-@purchase.PeriodMonth</option>
+                <option value="@periods.PeriodId">@periods.PeriodYear-@periods.PeriodMonth</option>
             }
         </select>
     </div>
     <div>
-        <label>Pantry Item:</label> <input type="number" name="PantryItemName" />
+        <label>Pantry Item:</label>
+        <select name="PantryItemID">
+            @foreach (var pantryitem in Model)
+            {
+                <option value="@pantryitem.PantryItemID">@pantryitem.PantryItemName</option>
+            }
+        </select>
     </div>
     <div>
         <label>Unit Price:</label> <input type="number" name="PantryItemUnitPrice" />

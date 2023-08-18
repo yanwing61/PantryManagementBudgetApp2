@@ -8,8 +8,8 @@
 @foreach(var purchase in Model)
 {
     <hr />
-    <h3><a href="/Purchase/Details/@purchase.PurchaseId">@purchase.PeriodYear-@purchase.PeriodMonth</a></h3>
-    <div><a href="/PantryItem/details/@purchase.PantryItemID">@pantryitem.PantryItemName</a></div>
-    <div>Current Quantity: @purchase.PantryItemCurrentQty</div>
-    <div>Unit Price: CAD$@purchase.PantryItemUnitPrice</div>
+    <h3><a href="/Purchase/Details/@purchase.PurchaseID">@purchase.PeriodYear-@purchase.PeriodMonth</a></h3>
+    <div><a href="/PantryItem/details/@purchase.PantryItemID">@purchase.PantryItemName</a></div>
+    <div>Quantity: @purchase.Qty</div>
+    <div>Unit Price: CAD$@purchase.UnitPrice</div>
 }

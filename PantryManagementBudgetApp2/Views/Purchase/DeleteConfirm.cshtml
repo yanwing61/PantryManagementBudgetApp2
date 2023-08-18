@@ -5,8 +5,8 @@
 
 <h2>Are you sure you want to delete this purchase record?</h2>
 <a href="/Purchase/List">Cancel</a>
-<h2>@Model.PeriodYear-@Model.PeriodMonth</h2>
+<h2>@Model.PeriodYear-@Model.PeriodMonth  @Model.PantryItemName</h2>
 
-<form action="/Purchase/Delete/@Model.PurchaseId" method="post">
+<form action="/Purchase/Delete/@Model.PurchaseID" method="post">
     <input type="submit" value="Delete" />
 </form>

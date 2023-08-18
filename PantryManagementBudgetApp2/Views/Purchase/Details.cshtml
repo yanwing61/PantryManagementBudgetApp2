@@ -5,26 +5,14 @@
 
 <nav style="margin-bottom: 20px;">
     <a href="/Purchase/List">Go back</a> |
-    <a href="/Purchase/Edit/@Model.PurchaseId">Update</a> |
-    <a style="color:#ab2020;" href="/Purchase/DeleteConfirm/@Model.PurchaseId">Delete</a>
+    <a href="/Purchase/Edit/@Model.PurchaseID">Update</a> |
+    <a style="color:#ab2020;" href="/Purchase/DeleteConfirm/@Model.PurchaseID">Delete</a>
 </nav>
 <h2>@Model.PeriodYear-<span id="monthFormatted"></span></h2>
-<div style="margin-top: 20px;">
-    <h3>Assets</h3>
-    <div>Chequing Account Purchase: $@Model.ChequingAcct</div>
-    <div>Savings Account Purchase: $@Model.SavingsAcct</div>
-    <div><strong>Total: $@(Model.ChequingAcct + Model.SavingsAcct)</strong></div>
-</div>
-<div style="margin-top: 20px;">
-    <h3>Liabilities</h3>
-    <div>Revolving Credit Purchase: $@Model.RevolvingCrdt</div>
-    <div>Instalment Credit Purchase: $@Model.InstalmentCrdt</div>
-    <div><strong>Total: $@(Model.RevolvingCrdt + Model.InstalmentCrdt)</strong></div>
-</div>
-<div style="margin-top: 20px;">
-    <h3>Net Worth</h3>
-    <div><strong>Assets less Liabilities: $@(Model.ChequingAcct + Model.SavingsAcct - (Model.RevolvingCrdt + Model.InstalmentCrdt))</strong></div>
-</div>
+
+<div>Pantry Item: <a href="/PantryItem/Details/@Model.PantryItemID">@Model.PantryItemName</a></div>
+<div>Quantity: @Model.Qty</div>
+<div>Unit Price: @Model.UnitPrice</div>
 
 <script>
     let monthFormatted = document.getElementById("monthFormatted");
