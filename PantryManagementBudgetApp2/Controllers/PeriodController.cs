@@ -90,6 +90,14 @@ namespace PantryManagementBudgetApp2.Controllers
 
             ViewModel.RelatedCashflows = RelatedCashflows;
 
+            //showcase info about purchases related to this period
+            //send aa requeast to gather info about purchases relted to particular period ID
+            url = "CashflowData/ListPurchasesForPeriod/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<PurchaseDto> RelatedPurchases = response.Content.ReadAsAsync<IEnumerable<PurchaseDto>>().Result;
+
+            ViewModel.RelatedPurchases = RelatedPurchases;
+
             return View(ViewModel);
         }
 
