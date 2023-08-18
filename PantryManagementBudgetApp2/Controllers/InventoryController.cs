@@ -26,7 +26,7 @@ namespace PantryManagementBudgetApp2.Controllers
             };
 
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44302/api/");
+            client.BaseAddress = new Uri("https://localhost:44351/api/");
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace PantryManagementBudgetApp2.Controllers
         public ActionResult List()
         {
             //objective: communicate with inventory data api to retrieve a list of Inventories
-            // curl https://localhost:44302/api/InventoryData/ListInventories
+            // curl https://localhost:44351/api/InventoryData/ListInventories
 
             string url = "InventoryData/ListInventories";
 
@@ -77,7 +77,7 @@ namespace PantryManagementBudgetApp2.Controllers
         public ActionResult Details(int id)
         {
             //objective: communicate with inventory data api to retrieve one inventory
-            // curl https://localhost:44302/api/InventoryData/FindInventory/{id}
+            // curl https://localhost:44351/api/InventoryData/FindInventory/{id}
 
             string url = "InventoryData/FindInventory/" + id;
 
@@ -106,7 +106,7 @@ namespace PantryManagementBudgetApp2.Controllers
             GetApplicationCookie();
 
             //information about all pantry items in the systems
-            // curl https://localhost:44302/api/PantryItemData/ListPantryItems
+            // curl https://localhost:44351/api/PantryItemData/ListPantryItems
 
             string url = "PantryItemData/ListPantryItems";
 
@@ -135,7 +135,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
             Debug.WriteLine(jsonpayload);
 
-            //curl -H "Content-Type:application/json" -d @Inventory.json https://localhost:44302/api/Inventorydata/addInventory 
+            //curl -H "Content-Type:application/json" -d @Inventory.json https://localhost:44351/api/Inventorydata/addInventory 
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";

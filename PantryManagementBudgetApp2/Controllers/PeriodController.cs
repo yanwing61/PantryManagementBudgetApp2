@@ -26,7 +26,7 @@ namespace PantryManagementBudgetApp2.Controllers
                 UseCookies = false
             };
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44394/api/");
+            client.BaseAddress = new Uri("https://localhost:44351/api/");
         }
 
         private void GetApplicationCookie()
@@ -50,7 +50,7 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             GetApplicationCookie(); //get token credentials
             // Objetive: Communicate with period data API to retriee list of periods
-            // curl https://localhost:44394/api/PeriodData/ListPeriods
+            // curl https://localhost:44351/api/PeriodData/ListPeriods
 
             string url = "PeriodData/ListPeriods";
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -65,7 +65,7 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             GetApplicationCookie(); //get token credentials
             // Objective: Communicate with period data API to retrieve one period record
-            // curl https://localhost:44394/api/PeriodData/FindPeriod/{id}
+            // curl https://localhost:44351/api/PeriodData/FindPeriod/{id}
 
             DetailsPeriod ViewModel = new DetailsPeriod();
 
@@ -116,7 +116,7 @@ namespace PantryManagementBudgetApp2.Controllers
             // Debug.WriteLine(period.PeriodMonth)
 
             // Objective: Add new period record to system using API
-            // curl -H "Content-Type:application/json" -d @period.json https://localhost:44394/api/PeriodData/AddPeriod
+            // curl -H "Content-Type:application/json" -d @period.json https://localhost:44351/api/PeriodData/AddPeriod
 
             string url = "PeriodData/AddPeriod";
 

@@ -25,7 +25,7 @@ namespace PantryManagementBudgetApp2.Controllers
                 UseCookies = false
             };
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44394/api/");
+            client.BaseAddress = new Uri("https://localhost:44351/api/");
         }
 
         private void GetApplicationCookie()
@@ -49,7 +49,7 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             GetApplicationCookie(); //get token credentials
             // Objective: Communicate with cashflow data API to retrieve list of cashflows
-            // curl https://localhost:44394/api/CashflowData/ListCashflows
+            // curl https://localhost:44351/api/CashflowData/ListCashflows
 
             string url = "CashflowData/ListCashflows";
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -64,7 +64,7 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             GetApplicationCookie(); //get token credentials
             // Objective: Communicate with cashflow data API to retrieve one cashflow record
-            // curl https://localhost:44394/api/CashflowData/FindCashflow/{id}
+            // curl https://localhost:44351/api/CashflowData/FindCashflow/{id}
 
             string url = "CashflowData/FindCashflow/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -102,7 +102,7 @@ namespace PantryManagementBudgetApp2.Controllers
             // Debug.WriteLine(cashflow.Inflow);
 
             // Objective: Add new cashflow record to system using API
-            // curl -H "Content-type:application/json" -d @record.json http://localhost:44394/api/CashflowData/AddCashflow
+            // curl -H "Content-type:application/json" -d @record.json http://localhost:44351/api/CashflowData/AddCashflow
 
             string url = "CashflowData/AddCashflow";
 
