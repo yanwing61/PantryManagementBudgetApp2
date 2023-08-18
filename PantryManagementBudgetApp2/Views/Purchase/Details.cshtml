@@ -1,80 +1,37 @@
-@model PantryManagementBudgetApp2.Models.ViewModels.UpdatePurchase
+@model PantryManagementBudgetApp2.Models.BalanceDto
 @{
     ViewBag.Title = "Details";
 }
 
 <nav style="margin-bottom: 20px;">
-    <a href="/Period/List">Go back</a> |
-    <a href="/Period/Edit/@Model.SelectedPeriod.PeriodId">Update</a> |
-    <a style="color:#ab2020;" href="/Period/DeleteConfirm/@Model.SelectedPeriod.PeriodId">Delete</a>
+    <a href="/Balance/List">Go back</a> |
+    <a href="/Balance/Edit/@Model.BalanceId">Update</a> |
+    <a style="color:#ab2020;" href="/Balance/DeleteConfirm/@Model.BalanceId">Delete</a>
 </nav>
-
-<h2>@Model.SelectedPeriod.PeriodYear-<span id="monthFormatted"></span></h2>
-<div>Year: @Model.SelectedPeriod.PeriodYear</div>
-<div>Month: <span id="monthOut"></span></div>
-
-<div style="margin-top: 25px">
-    @foreach(var balance in Model.RelatedBalances)
-            {
-                <a href="/Balance/Details/@balance.BalanceId">View Balance</a>
-            }
+<h2>@Model.PeriodYear-<span id="monthFormatted"></span></h2>
+<div style="margin-top: 20px;">
+    <h3>Assets</h3>
+    <div>Chequing Account Balance: $@Model.ChequingAcct</div>
+    <div>Savings Account Balance: $@Model.SavingsAcct</div>
+    <div><strong>Total: $@(Model.ChequingAcct + Model.SavingsAcct)</strong></div>
 </div>
-
-<div style="margin-top: 25px">
-    @foreach (var cashflow in Model.RelatedCashflows)
-    {
-        <a href="/Cashflow/Details/@cashflow.CashflowId">View Cashflow</a>
-    }
+<div style="margin-top: 20px;">
+    <h3>Liabilities</h3>
+    <div>Revolving Credit Balance: $@Model.RevolvingCrdt</div>
+    <div>Instalment Credit Balance: $@Model.InstalmentCrdt</div>
+    <div><strong>Total: $@(Model.RevolvingCrdt + Model.InstalmentCrdt)</strong></div>
+</div>
+<div style="margin-top: 20px;">
+    <h3>Net Worth</h3>
+    <div><strong>Assets less Liabilities: $@(Model.ChequingAcct + Model.SavingsAcct - (Model.RevolvingCrdt + Model.InstalmentCrdt))</strong></div>
 </div>
 
 <script>
-    let monthOut = document.getElementById("monthOut");
     let monthFormatted = document.getElementById("monthFormatted");
 
-    switch (@Model.SelectedPeriod.PeriodMonth) {
-        case 1:
-            monthOut.innerHTML = "January";
-            break;
-        case 2:
-            monthOut.innerHTML = "February";
-            break;
-        case 3:
-            monthOut.innerHTML = "March";
-            break;
-        case 4:
-            monthOut.innerHTML = "April";
-            break;
-        case 5:
-            monthOut.innerHTML = "May";
-            break;
-        case 6:
-            monthOut.innerHTML = "June";
-            break;
-        case 7:
-            monthOut.innerHTML = "July";
-            break;
-        case 8:
-            monthOut.innerHTML = "August";
-            break;
-        case 9:
-            monthOut.innerHTML = "September";
-            break;
-        case 10:
-            monthOut.innerHTML = "October";
-            break;
-        case 11:
-            monthOut.innerHTML = "November";
-            break;
-        case 12:
-            monthOut.innerHTML = "December";
-            break;
-        default:
-            monthOut.innerHTML = "Invalid Month";
-    }
-
-    if (@Model.SelectedPeriod.PeriodMonth < 10) {
-        monthFormatted.innerHTML = "0" + @Model.SelectedPeriod.PeriodMonth;
+    if (@Model.PeriodMonth < 10) {
+        monthFormatted.innerHTML = "0" + @Model.PeriodMonth;
     } else {
-        monthFormatted.innerHTML = @Model.SelectedPeriod.PeriodMonth;
+        monthFormatted.innerHTML = @Model.PeriodMonth;
     }
 </script>

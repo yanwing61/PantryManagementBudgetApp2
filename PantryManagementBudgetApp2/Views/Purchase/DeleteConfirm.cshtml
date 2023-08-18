@@ -1,12 +1,15 @@
-@model PantryManagementBudgetApp2.Models.PeriodDto
+@model PantryManagementBudgetApp2.Models.PurchaseDto
 @{
     ViewBag.Title = "DeleteConfirm";
 }
 
-<h2>Are you sure you want to delete this month?</h2>
-<a href="/Period/List">Cancel</a>
+<h2>Are you sure you want to delete this balance record?</h2>
+<a href="/Balance/List">Cancel</a>
 <h2>@Model.PeriodYear-@Model.PeriodMonth</h2>
+<div>Asset: $@(Model.ChequingAcct + Model.SavingsAcct)</div>
+<div>Liability: $@(Model.RevolvingCrdt + Model.InstalmentCrdt)</div>
+<div>Net: $@(Model.ChequingAcct + Model.SavingsAcct - (Model.RevolvingCrdt + Model.InstalmentCrdt))</div>
 
-<form action="/Period/Delete/@Model.PeriodId" method="post">
+<form action="/Balance/Delete/@Model.BalanceId" method="post">
     <input type="submit" value="Delete" />
 </form>
