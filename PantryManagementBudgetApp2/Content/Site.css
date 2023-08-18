@@ -1,6 +1,41 @@
-﻿body {
+﻿﻿@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #FFE9B3;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.jumbotron {
+    background-color: #FFC176;
+}
+
+.navbar, .btn {
+    background-color: #D7DACE;
+    color: black;
+    border: 0;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+    color: #788060;
+}
+
+    .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-nav > li > a:hover {
+        color: #cc7000;
+    }
+
+#add {
+    color: #cc7000;
+    background-color: #FFDC74;
+}
+
+h2, h3 {
+    color: #cc7000;
+}
+
+a {
+    color: #788060;
 }
 
 /* Set padding to keep content from hitting the edges */
