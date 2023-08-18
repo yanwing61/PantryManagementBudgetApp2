@@ -25,7 +25,7 @@ namespace PantryManagementBudgetApp2.Controllers
                 UseCookies = false
             };
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44394/api/");
+            client.BaseAddress = new Uri("https://localhost:44351/api/");
         }
 
         private void GetApplicationCookie()
@@ -49,7 +49,7 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             GetApplicationCookie(); //get token credentials
             // Objective: Communicate with Purchase data API to retrieve list of Purchases
-            // curl https://localhost:44394/api/PurchaseData/ListPurchases
+            // curl https://localhost:44351/api/PurchaseData/ListPurchases
 
             string url = "PurchaseData/ListPurchases";
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -64,7 +64,7 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             GetApplicationCookie(); //get token credentials
             // Objective: Communicate with Purchase data API to retrieve one Purchase record
-            // curl https://localhost:44394/api/PurchaseData/FindPurchase/{id}
+            // curl https://localhost:44351/api/PurchaseData/FindPurchase/{id}
 
             string url = "PurchaseData/FindPurchase/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -111,7 +111,7 @@ namespace PantryManagementBudgetApp2.Controllers
             // Debug.WriteLine(purchase.Inflow);
 
             // Objective: Add new purchase record to system using API
-            // curl -H "Content-type:application/json" -d @record.json http://localhost:44394/api/PurchaseData/AddPurchase
+            // curl -H "Content-type:application/json" -d @record.json http://localhost:44351/api/PurchaseData/AddPurchase
 
             string url = "PurchaseData/AddPurchase";
 

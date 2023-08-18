@@ -26,7 +26,7 @@ namespace PantryManagementBudgetApp2.Controllers
             };
 
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44302/api/");
+            client.BaseAddress = new Uri("https://localhost:44351/api/");
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace PantryManagementBudgetApp2.Controllers
         public ActionResult List()
         {
             //objective: communicate with tag data api to retrieve a list of tags
-            // curl https://localhost:44302/api/TagData/ListTags
+            // curl https://localhost:44351/api/TagData/ListTags
 
             string url = "TagData/ListTags";
 
@@ -78,7 +78,7 @@ namespace PantryManagementBudgetApp2.Controllers
             DetailsTag ViewModel = new DetailsTag();
 
             //objective: communicate with tag data api to retrieve one tag
-            // curl https://localhost:44302/api/TagData/FindTag/{id}
+            // curl https://localhost:44351/api/TagData/FindTag/{id}
 
             string url = "TagData/FindTag/" + id;
 
@@ -132,7 +132,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
             Debug.WriteLine(jsonpayload);
 
-            //curl -H "Content-Type:application/json" -d @Tag.json https://localhost:44302/api/Tagdata/addTag 
+            //curl -H "Content-Type:application/json" -d @Tag.json https://localhost:44351/api/Tagdata/addTag 
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";

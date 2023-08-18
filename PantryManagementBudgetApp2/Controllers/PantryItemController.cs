@@ -27,7 +27,7 @@ namespace PantryManagementBudgetApp2.Controllers
             };
 
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44302/api/");
+            client.BaseAddress = new Uri("https://localhost:44351/api/");
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace PantryManagementBudgetApp2.Controllers
         public ActionResult List()
         {
             //objective: communicate with pantry item data api to retrieve a list of pantry items
-            // curl https://localhost:44302/api/PantryItemData/ListPantryItems
+            // curl https://localhost:44351/api/PantryItemData/ListPantryItems
 
             string url = "PantryItemData/ListPantryItems";
 
@@ -77,7 +77,7 @@ namespace PantryManagementBudgetApp2.Controllers
         public ActionResult Details(int id)
         {
             //objective: communicate with pantry item data api to retrieve one pantry item
-            // curl https://localhost:44302/api/PantryItemData/FindPantryItem/{id}
+            // curl https://localhost:44351/api/PantryItemData/FindPantryItem/{id}
 
             DetailsPantryItem ViewModel = new DetailsPantryItem();
 
@@ -107,14 +107,23 @@ namespace PantryManagementBudgetApp2.Controllers
 
             ViewModel.NotAssociatedTags = NotAssociatedTags;
 
-            //Showcase all the inventory related to this pantry item
-            //send a request to gather info about inventory realted to a specific pantry item id
+            //Showcase all the inventories related to this pantry item
+            //send a request to gather info about inventories realted to a specific pantry item id
 
             url = "InventoryData/ListInventoriesForPantryItem/" + id;
             response = client.GetAsync(url).Result;
             IEnumerable<InventoryDto> RelatedInventories = response.Content.ReadAsAsync<IEnumerable<InventoryDto>>().Result;
 
             ViewModel.RelatedInventories = RelatedInventories;
+
+            //Showcase all the purchases related to this pantry item
+            //send a request to gather info about purchases realted to a specific pantry item id
+
+            url = "PurchaseData/ListPurchasesForPantryItem/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<PurchaseDto> RelatedPurchases = response.Content.ReadAsAsync<IEnumerable<PurchaseDto>>().Result;
+
+            ViewModel.RelatedPurchases = RelatedPurchases;
 
             return View(ViewModel);
         }
@@ -183,7 +192,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
             Debug.WriteLine(jsonpayload);
 
-            //curl -H "Content-Type:application/json" -d @PantryItem.json https://localhost:44302/api/PantryItemdata/addPantryItem 
+            //curl -H "Content-Type:application/json" -d @PantryItem.json https://localhost:44351/api/PantryItemdata/addPantryItem 
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";

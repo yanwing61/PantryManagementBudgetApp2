@@ -25,7 +25,7 @@ namespace PantryManagementBudgetApp2.Controllers
                 UseCookies = false
             };
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44394/api/");
+            client.BaseAddress = new Uri("https://localhost:44351/api/");
         }
 
         private void GetApplicationCookie()
@@ -49,7 +49,7 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             GetApplicationCookie(); //get token credentials
             // Objective: Communicate with balance data API to retrieve list of balances
-            // curl https://localhost:44394/api/BalanceData/ListBalances
+            // curl https://localhost:44351/api/BalanceData/ListBalances
 
             string url = "BalanceData/ListBalances";
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -64,7 +64,7 @@ namespace PantryManagementBudgetApp2.Controllers
         {
             GetApplicationCookie(); //get token credentials
             // Objective: Communicate with balance data API to retrieve one balance record
-            // curl https://localhost:44394/api/BalanceData/FindBalance/{id}
+            // curl https://localhost:44351/api/BalanceData/FindBalance/{id}
 
             string url = "BalanceData/FindBalance/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -103,7 +103,7 @@ namespace PantryManagementBudgetApp2.Controllers
             // Debug.WriteLine(balance.OwnBalance);
 
             // Objective: Add new balance record to system using API
-            // curl -H "Content-Type:application/json" -d @balance.json https://localhost:44394/api/BalanceData/AddBalance
+            // curl -H "Content-Type:application/json" -d @balance.json https://localhost:44351/api/BalanceData/AddBalance
 
             string url = "BalanceData/AddBalance";
 
