@@ -1,0 +1,12 @@
+@model IEnumerable<PantryManagementBudgetApp2.Models.PeriodDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Months</h2>
+<a href="/Period/New">Add a new month</a>
+@foreach(var period in Model)
+{
+    <hr />
+    <div><a href="/Period/Details/@period.PeriodId">@period.PeriodYear-@period.PeriodMonth</a></div>
+}

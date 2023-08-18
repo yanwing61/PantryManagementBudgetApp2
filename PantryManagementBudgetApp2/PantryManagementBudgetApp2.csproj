@@ -452,6 +452,11 @@
     <Content Include="Views\Tag\Error.cshtml" />
     <Content Include="Views\Tag\List.cshtml" />
     <Content Include="Views\Tag\New.cshtml" />
+    <Content Include="Views\Purchase\DeleteConfirm.cshtml" />
+    <Content Include="Views\Purchase\Details.cshtml" />
+    <Content Include="Views\Purchase\Edit.cshtml" />
+    <Content Include="Views\Purchase\List.cshtml" />
+    <Content Include="Views\Purchase\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
