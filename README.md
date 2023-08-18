@@ -2,7 +2,7 @@
 
 Welcome to the Pantry Management and Budgeting App! This web application is designed to help you manage your inventory of pantry items, track your expenses, and maintain a budget.
 
-##### Custom Entities
+### Custom Entities
 
 - **Period:** Represents a time period within the budget management system. Other entities like balances and cashflows are associated with specific periods.
 
@@ -17,3 +17,10 @@ Welcome to the Pantry Management and Budgeting App! This web application is desi
 - **Tag:** Represents tags that can be associated with pantry items, allowing categorization and filtering.
 
 - **Purchase:** Represents a purchase transaction, including details about the purchased items and costs.
+
+
+### Additional Features
+
+**Authentication:** Authentication and roles were added to the app to ensure that users have access to different permission levels depending on their assigned roles.
+
+**Styling:** Custom styling was implemented to the app.
