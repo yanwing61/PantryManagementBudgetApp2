@@ -9,6 +9,7 @@
 {
     <hr />
     <h3><a href="/Purchase/Details/@purchase.PurchaseId">@purchase.PeriodYear-@purchase.PeriodMonth</a></h3>
-    <div>Your net worth this month is <strong>$@(purchase.ChequingAcct + purchase.SavingsAcct - purchase.RevolvingCrdt - purchase.InstalmentCrdt)</strong></div>
-    <div><a href="/Purchase/Details/@purchase.PurchaseId">View detailed breakdown &raquo;</a></div>
+    <div><a href="/PantryItem/details/@purchase.PantryItemID">@pantryitem.PantryItemName</a></div>
+    <div>Current Quantity: @purchase.PantryItemCurrentQty</div>
+    <div>Unit Price: CAD$@purchase.PantryItemUnitPrice</div>
 }
