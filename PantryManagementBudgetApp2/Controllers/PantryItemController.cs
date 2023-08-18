@@ -54,8 +54,10 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: PantryItem/List
+        [Authorize(Roles = "Admin, User")]
         public ActionResult List()
         {
+            GetApplicationCookie();
             //objective: communicate with pantry item data api to retrieve a list of pantry items
             // curl https://localhost:44351/api/PantryItemData/ListPantryItems
 
@@ -74,8 +76,10 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: PantryItem/Details/5
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Details(int id)
         {
+            GetApplicationCookie();
             //objective: communicate with pantry item data api to retrieve one pantry item
             // curl https://localhost:44351/api/PantryItemData/FindPantryItem/{id}
 
@@ -130,7 +134,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         //POST: /PantryItem/Associate/{pantryitemid}
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Associate(int id, int TagID)
         {
             GetApplicationCookie();
@@ -148,7 +152,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         //GET: /PantryItem/Unassociate/{id}?TagID={tagid}
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Unassociate(int id, int TagID)
         {
             GetApplicationCookie();
@@ -170,7 +174,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: PantryItem/New
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult New()
         {
             GetApplicationCookie();
@@ -179,7 +183,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: PantryItem/Create
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create(PantryItem pantryItem)
         {
             GetApplicationCookie();
@@ -210,7 +214,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: PantryItem/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             GetApplicationCookie();
@@ -222,7 +226,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: PantryItem/Update/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, PantryItem PantryItem)
         {
             GetApplicationCookie();
@@ -244,7 +248,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: PantryItem/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             GetApplicationCookie();
@@ -256,7 +260,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: PantryItem/Delete/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             GetApplicationCookie();

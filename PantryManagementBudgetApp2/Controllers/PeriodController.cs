@@ -45,7 +45,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Period/List
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult List()
         {
             GetApplicationCookie(); //get token credentials
@@ -60,7 +60,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Period/Details/5
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Details(int id)
         {
             GetApplicationCookie(); //get token credentials
@@ -108,7 +108,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Period/New
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult New()
         {
             return View();
@@ -116,7 +116,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Period/Create
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create(Period period)
         {
             GetApplicationCookie(); //get token credentials
@@ -148,7 +148,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Period/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             string url = "PeriodData/FindPeriod/" + id;
@@ -160,7 +160,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Period/Update/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Period period)
         {
             GetApplicationCookie(); //get token credentials 
@@ -181,7 +181,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Period/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "PeriodData/FindPeriod/" + id;
@@ -192,7 +192,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Period/Delete/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             GetApplicationCookie(); //get token credentials

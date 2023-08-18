@@ -27,6 +27,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// GET: api/PantryItemData/ListPantryItems
         /// </example>
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public IEnumerable<PantryItemDto> ListPantryItems()
         {
             List<PantryItem> PantryItems = db.PantryItems.ToList();
@@ -55,6 +56,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// GET: api/PantryItemData/ListPantryItemsForTag/1
         /// </example>
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         [ResponseType(typeof(PantryItemDto))]
         public IHttpActionResult ListPantryItemsForTag(int id)
         {
@@ -89,7 +91,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// POST api/PantryItemData/AssociatePantryItemWithTag/6/1
         /// </example>
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         [Route("api/PantryItemData/AssociatePantryItemWithTag/{pantryitemid}/{tagid}")]
         public IHttpActionResult AssociatePantryItemWithTag(int pantryitemid, int tagid)
         {
@@ -128,7 +130,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// POST api/PantryItemData/UnAssociatePantryItemWithTag/6/1
         /// </example>
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         [Route("api/PantryItemData/UnAssociatePantryItemWithTag/{pantryitemid}/{tagid}")]
         public IHttpActionResult UnAssociatePantryItemWithTag(int pantryitemid, int tagid)
         {
@@ -167,7 +169,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// </example> 
         [ResponseType(typeof(PantryItem))]
         [HttpGet]
-
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult FindPantryItem(int id)
         {
             PantryItem PantryItem = db.PantryItems.Find(id);
@@ -202,7 +204,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdatePantryItem(int id, PantryItem pantryItem)
         {
             Debug.WriteLine("update method reached");
@@ -261,7 +263,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         [ResponseType(typeof(PantryItem))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult AddPantryItem(PantryItem pantryItem)
         {
             if (!ModelState.IsValid)
@@ -290,7 +292,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         [ResponseType(typeof(PantryItem))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeletePantryItem(int id)
         {
             PantryItem pantryItem = db.PantryItems.Find(id);

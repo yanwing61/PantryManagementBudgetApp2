@@ -53,8 +53,10 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Tag/List
+        [Authorize(Roles = "Admin, User")]
         public ActionResult List()
         {
+            GetApplicationCookie();
             //objective: communicate with tag data api to retrieve a list of tags
             // curl https://localhost:44351/api/TagData/ListTags
 
@@ -73,8 +75,10 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Tag/Details/5
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Details(int id)
         {
+            GetApplicationCookie();
             DetailsTag ViewModel = new DetailsTag();
 
             //objective: communicate with tag data api to retrieve one tag
@@ -110,7 +114,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Tag/New
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult New()
         {
             GetApplicationCookie();
@@ -119,7 +123,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Tag/Create
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create(Tag Tag)
         {
             GetApplicationCookie();
@@ -150,7 +154,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Tag/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             GetApplicationCookie();
@@ -162,7 +166,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Tag/Update/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Tag Tag)
         {
             GetApplicationCookie();
@@ -183,7 +187,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Tag/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             GetApplicationCookie();
@@ -195,7 +199,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Tag/Delete/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             GetApplicationCookie();

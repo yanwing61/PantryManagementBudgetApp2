@@ -18,7 +18,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // GET: api/BalanceData/ListBalances
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public IEnumerable<BalanceDto> ListBalances()
         {
             List<Balance> Balances = db.Balances.ToList();
@@ -41,6 +41,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // GET: api/BalanceData/ListBalancesForPeriod/1
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public IEnumerable<BalanceDto> ListBalancesForPeriod(int id)
         {
             List<Balance> Balances = db.Balances.Where(b => b.PeriodId == id).ToList();
@@ -64,7 +65,7 @@ namespace PantryManagementBudgetApp2.Controllers
         // GET: api/BalanceData/FindBalance/5
         [ResponseType(typeof(Balance))]
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult FindBalance(int id)
         {
             Balance Balance = db.Balances.Find(id);
@@ -90,7 +91,7 @@ namespace PantryManagementBudgetApp2.Controllers
         // POST: api/BalanceData/UpdateBalance/5
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateBalance(int id, Balance balance)
         {
             if (!ModelState.IsValid)
@@ -127,7 +128,7 @@ namespace PantryManagementBudgetApp2.Controllers
         // POST: api/BalanceData/AddBalance
         [ResponseType(typeof(Balance))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult AddBalance(Balance balance)
         {
             if (!ModelState.IsValid)
@@ -144,7 +145,7 @@ namespace PantryManagementBudgetApp2.Controllers
         // POST: api/BalanceData/DeleteBalance/5
         [ResponseType(typeof(Balance))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteBalance(int id)
         {
             Balance balance = db.Balances.Find(id);

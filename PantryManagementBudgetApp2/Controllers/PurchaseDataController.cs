@@ -27,6 +27,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// GET: api/PurchaseData/ListPurchases
         /// </example>
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public IEnumerable<PurchaseDto> ListPurchases()
         {
             List<Purchase> Purchases = db.Purchases.ToList();
@@ -59,6 +60,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// GET: api/PurchaseData/ListPurchasesForPeriod/1
         /// </example>
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         [ResponseType(typeof(PurchaseDto))]
         public IHttpActionResult ListPurchasesForPeriod(int id)
         {
@@ -92,6 +94,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// GET: api/PurchaseData/ListPurchasesForPantryItem/1
         /// </example>
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         [ResponseType(typeof(PurchaseDto))]
         public IHttpActionResult ListPurchasesForPantryItem(int id)
         {
@@ -126,6 +129,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// </example> 
         [ResponseType(typeof(Purchase))]
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult FindPurchase(int id)
         {
             Purchase Purchase = db.Purchases.Find(id);
@@ -166,6 +170,7 @@ namespace PantryManagementBudgetApp2.Controllers
         
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdatePurchase(int id, Purchase purchase)
         {
             if (!ModelState.IsValid)
@@ -215,6 +220,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         [ResponseType(typeof(Purchase))]
         [HttpPost]
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult AddPurchase(Purchase purchase)
         {
             if (!ModelState.IsValid)
@@ -243,6 +249,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         [ResponseType(typeof(Purchase))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeletePurchase(int id)
         {
             Purchase purchase = db.Purchases.Find(id);
@@ -256,95 +263,6 @@ namespace PantryManagementBudgetApp2.Controllers
 
             return Ok();
         }
-
-        /*
-         * Preious auto-scaffolded code - commented out for reference.
-         * 
-        // GET: api/PurchaseData
-        public IQueryable<Purchase> GetPurchases()
-        {
-            return db.Purchases;
-        }
-
-        // GET: api/PurchaseData/5
-        [ResponseType(typeof(Purchase))]
-        public IHttpActionResult GetPurchase(int id)
-        {
-            Purchase purchase = db.Purchases.Find(id);
-            if (purchase == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(purchase);
-        }
-
-        // PUT: api/PurchaseData/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutPurchase(int id, Purchase purchase)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != purchase.PurchaseID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(purchase).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PurchaseExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/PurchaseData
-        [ResponseType(typeof(Purchase))]
-        public IHttpActionResult PostPurchase(Purchase purchase)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Purchases.Add(purchase);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = purchase.PurchaseID }, purchase);
-        }
-
-        // DELETE: api/PurchaseData/5
-        [ResponseType(typeof(Purchase))]
-        public IHttpActionResult DeletePurchase(int id)
-        {
-            Purchase purchase = db.Purchases.Find(id);
-            if (purchase == null)
-            {
-                return NotFound();
-            }
-
-            db.Purchases.Remove(purchase);
-            db.SaveChanges();
-
-            return Ok(purchase);
-        }
-        */
 
         protected override void Dispose(bool disposing)
         {

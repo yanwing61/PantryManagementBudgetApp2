@@ -27,6 +27,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// GET: api/InventoryData/ListInventories
         /// </example>
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public IEnumerable<InventoryDto> ListInventories()
         {
             List<Inventory> Inventories = db.Inventories.ToList();
@@ -56,6 +57,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// GET: api/InventoryData/ListInventoriesForPantryItem/6
         /// </example>
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         [ResponseType(typeof(InventoryDto))]
         public IHttpActionResult ListInventoriesForPantryItem(int id)
         {
@@ -91,6 +93,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// </example> 
         [ResponseType(typeof(Inventory))]
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult FindInventory(int id)
         {
             Inventory Inventory = db.Inventories.Find(id);
@@ -127,7 +130,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateInventory(int id, Inventory Inventory)
         {
             Debug.WriteLine("update method reached");
@@ -188,7 +191,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         [ResponseType(typeof(Inventory))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult AddInventory(Inventory Inventory)
         {
             if (!ModelState.IsValid)
@@ -217,7 +220,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         [ResponseType(typeof(Inventory))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteInventory(int id)
         {
             Inventory Inventory = db.Inventories.Find(id);

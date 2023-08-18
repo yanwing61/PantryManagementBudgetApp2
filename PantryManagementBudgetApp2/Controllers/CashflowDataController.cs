@@ -18,7 +18,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // GET: api/CashflowData/ListCashflows
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public IEnumerable<CashflowDto> ListCashflows()
         {
             List<Cashflow> Cashflows = db.Cashflows.ToList();
@@ -39,6 +39,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // GET: api/CashflowData/ListCashflowsForPeriod/1
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public IEnumerable<CashflowDto> ListCashflowsForPeriod(int id)
         {
             List<Cashflow> Cashflows = db.Cashflows.Where(c => c.PeriodId == id).ToList();
@@ -60,7 +61,7 @@ namespace PantryManagementBudgetApp2.Controllers
         // GET: api/CashflowData/FindCashflow/5
         [ResponseType(typeof(Cashflow))]
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult FindCashflow(int id)
         {
             Cashflow Cashflow = db.Cashflows.Find(id);
@@ -84,7 +85,7 @@ namespace PantryManagementBudgetApp2.Controllers
         // POST: api/CashflowData/UpdateCashflow/5
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateCashflow(int id, Cashflow cashflow)
         {
             if (!ModelState.IsValid)
@@ -121,7 +122,7 @@ namespace PantryManagementBudgetApp2.Controllers
         // POST: api/CashflowData/AddCashflow
         [ResponseType(typeof(Cashflow))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult AddCashflow(Cashflow cashflow)
         {
             if (!ModelState.IsValid)
@@ -138,7 +139,7 @@ namespace PantryManagementBudgetApp2.Controllers
         // POST: api/CashflowData/DeleteCashflow/5
         [ResponseType(typeof(Cashflow))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteCashflow(int id)
         {
             Cashflow cashflow = db.Cashflows.Find(id);

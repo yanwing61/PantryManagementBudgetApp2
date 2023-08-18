@@ -10,7 +10,7 @@ using PantryManagementBudgetApp2.Models;
 
 namespace PantryManagementBudgetApp2.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin, User")]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

@@ -27,6 +27,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// GET: api/TagData/ListTags
         /// </example>
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public IEnumerable<TagDto> ListTags()
         {
             List<Tag> Tags = db.Tags.ToList();
@@ -53,6 +54,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// GET: api/TagData/ListTagsForPantryItem/1
         /// </example>
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         [ResponseType(typeof(TagDto))]
         public IHttpActionResult ListTagsForPantryItem(int id)
         {
@@ -84,6 +86,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// GET: api/TagData/ListTagsNotAssociateWithPantryItem/6
         /// </example>
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         [ResponseType(typeof(TagDto))]
         public IHttpActionResult ListTagsNotAssociateWithPantryItem(int id)
         {
@@ -118,6 +121,7 @@ namespace PantryManagementBudgetApp2.Controllers
         /// </example> 
         [ResponseType(typeof(Tag))]
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult FindTag(int id)
         {
             Tag Tag = db.Tags.Find(id);
@@ -151,7 +155,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateTag(int id, Tag Tag)
         {
             Debug.WriteLine("update method reached");
@@ -209,7 +213,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         [ResponseType(typeof(Tag))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public IHttpActionResult AddTag(Tag Tag)
         {
             if (!ModelState.IsValid)
@@ -238,7 +242,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         [ResponseType(typeof(Tag))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteTag(int id)
         {
             Tag Tag = db.Tags.Find(id);

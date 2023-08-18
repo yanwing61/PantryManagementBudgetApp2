@@ -44,7 +44,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Purchase/List
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult List()
         {
             GetApplicationCookie(); //get token credentials
@@ -59,7 +59,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Purchase/Details/5
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Details(int id)
         {
             GetApplicationCookie(); //get token credentials
@@ -80,9 +80,10 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Purchase/New
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult New()
         {
+            GetApplicationCookie(); //get token credentials
             // Info about all periods in system
             string periodUrl = "PeriodData/ListPeriods";
             HttpResponseMessage periodResponse = client.GetAsync(periodUrl).Result;
@@ -103,7 +104,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Purchase/Create
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create(Purchase purchase)
         {
             GetApplicationCookie(); //get token credentials
@@ -135,9 +136,10 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Purchase/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
+            GetApplicationCookie(); //get token credentials
             UpdatePurchase ViewModel = new UpdatePurchase();
 
             // existing purchase info
@@ -157,7 +159,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Purchase/Update/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Purchase purchase)
         {
             GetApplicationCookie(); //get token credentials
@@ -178,7 +180,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Purchase/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "PurchaseData/FindPurchase/" + id;
@@ -189,7 +191,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Purchase/Delete/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             GetApplicationCookie(); //get token credentials

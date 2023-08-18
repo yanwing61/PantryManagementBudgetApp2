@@ -44,7 +44,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Cashflow/List
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult List()
         {
             GetApplicationCookie(); //get token credentials
@@ -59,7 +59,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Cashflow/Details/5
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Details(int id)
         {
             GetApplicationCookie(); //get token credentials
@@ -80,7 +80,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Cashflow/New
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult New()
         {
             // Info about all periods in system
@@ -94,7 +94,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Cashflow/Create
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create(Cashflow cashflow)
         {
             GetApplicationCookie(); //get token credentials
@@ -126,7 +126,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Cashflow/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             UpdateCashflow ViewModel = new UpdateCashflow();
@@ -148,7 +148,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Cashflow/Update/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Cashflow cashflow)
         {
             GetApplicationCookie(); //get token credentials
@@ -169,7 +169,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Cashflow/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "CashflowData/FindCashflow/" + id;
@@ -180,7 +180,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Cashflow/Delete/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             GetApplicationCookie(); //get token credentials

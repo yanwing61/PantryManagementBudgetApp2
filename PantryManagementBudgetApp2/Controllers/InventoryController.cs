@@ -54,8 +54,10 @@ namespace PantryManagementBudgetApp2.Controllers
 
 
         // GET: Inventory/List
+        [Authorize(Roles = "Admin, User")]
         public ActionResult List()
         {
+            GetApplicationCookie();
             //objective: communicate with inventory data api to retrieve a list of Inventories
             // curl https://localhost:44351/api/InventoryData/ListInventories
 
@@ -74,8 +76,10 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Inventory/Details/5
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Details(int id)
         {
+            GetApplicationCookie();
             //objective: communicate with inventory data api to retrieve one inventory
             // curl https://localhost:44351/api/InventoryData/FindInventory/{id}
 
@@ -100,7 +104,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Inventory/New
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult New()
         {
             GetApplicationCookie();
@@ -119,7 +123,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Inventory/Create
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create(Inventory inventory, int clientTimezoneOffset)
         {
             GetApplicationCookie();
@@ -155,7 +159,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Inventory/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             GetApplicationCookie();
@@ -177,7 +181,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Inventory/Update/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Inventory inventory, int clientTimezoneOffset)
         {
             GetApplicationCookie();
@@ -202,7 +206,7 @@ namespace PantryManagementBudgetApp2.Controllers
         }
 
         // GET: Inventory/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             GetApplicationCookie();
@@ -215,7 +219,7 @@ namespace PantryManagementBudgetApp2.Controllers
 
         // POST: Inventory/Delete/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             GetApplicationCookie();
