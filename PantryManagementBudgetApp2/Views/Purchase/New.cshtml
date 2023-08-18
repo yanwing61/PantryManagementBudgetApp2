@@ -3,15 +3,15 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Enter New Balance</h2>
+<h2>Enter New Purchase</h2>
 
 <form action="/Purchase/Create" method="post">
     <div>
         <label>Period:</label>
-        <select name="PeriodId">
+        <select name="PurchaseId">
             @foreach (var periods in Model)
             {
-                <option value="@periods.PeriodId">@periods.PeriodYear-@periods.PeriodMonth</option>
+                <option value="@purchase.PurchaseId">@purchase.PeriodYear-@purchase.PeriodMonth</option>
             }
         </select>
     </div>
