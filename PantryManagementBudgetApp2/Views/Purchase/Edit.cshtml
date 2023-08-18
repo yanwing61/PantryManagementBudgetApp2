@@ -3,12 +3,12 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Update Balance</h2>
+<h2>Update Purchase</h2>
 
-<form action="/Balance/Update/@Model.SelectedBalance.BalanceId" method="post">
+<form action="/Purchase/Update/@Model.SelectedPurchase.PurchaseId" method="post">
     <div style="display:none">
-        @* Pass through balance ID *@
-        <input type="text" name="BalanceId" value="@Model.SelectedBalance.BalanceId" />
+        @* Pass through purchase ID *@
+        <input type="text" name="PurchaseId" value="@Model.SelectedPurchase.PurchaseId" />
     </div>
 
     <div>
@@ -22,18 +22,18 @@
 
     </div>
     <div>
-        <label>Chequing Account:</label> <input type="number" name="ChequingAcct" value="@Model.SelectedBalance.ChequingAcct" />
+        <label>Chequing Account:</label> <input type="number" name="ChequingAcct" value="@Model.SelectedPurchase.ChequingAcct" />
     </div>
     <div>
-        <label>Savings Account:</label> <input type="number" name="SavingsAcct" value="@Model.SelectedBalance.SavingsAcct" />
+        <label>Savings Account:</label> <input type="number" name="SavingsAcct" value="@Model.SelectedPurchase.SavingsAcct" />
     </div>
     <div>
-        <label>Revolving Credit:</label> <input type="number" name="RevolvingCrdt" value="@Model.SelectedBalance.RevolvingCrdt" />
+        <label>Revolving Credit:</label> <input type="number" name="RevolvingCrdt" value="@Model.SelectedPurchase.RevolvingCrdt" />
     </div>
     <div>
-        <label>Instalment Credit:</label> <input type="number" name="InstalmentCrdt" value="@Model.SelectedBalance.InstalmentCrdt" />
+        <label>Instalment Credit:</label> <input type="number" name="InstalmentCrdt" value="@Model.SelectedPurchase.InstalmentCrdt" />
     </div>
     <div>
-        <input type="submit" value="Update Balance" />
+        <input type="submit" value="Update Purchase" />
     </div>
 </form>
