@@ -22,5 +22,7 @@ Welcome to the Pantry Management and Budgeting App! This web application is desi
 ### Additional Features
 
 **Authentication:** Authentication and roles were added to the app to ensure that users have access to different permission levels depending on their assigned roles.
+- User - Read and Add only
+- Admin - Full CRUD
 
-**Styling:** Custom styling was implemented to the app.
+**Styling:** Custom styling and layout were implemented to the app.
