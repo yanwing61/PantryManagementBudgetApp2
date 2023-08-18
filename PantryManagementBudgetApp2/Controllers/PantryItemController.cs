@@ -107,14 +107,23 @@ namespace PantryManagementBudgetApp2.Controllers
 
             ViewModel.NotAssociatedTags = NotAssociatedTags;
 
-            //Showcase all the inventory related to this pantry item
-            //send a request to gather info about inventory realted to a specific pantry item id
+            //Showcase all the inventories related to this pantry item
+            //send a request to gather info about inventories realted to a specific pantry item id
 
             url = "InventoryData/ListInventoriesForPantryItem/" + id;
             response = client.GetAsync(url).Result;
             IEnumerable<InventoryDto> RelatedInventories = response.Content.ReadAsAsync<IEnumerable<InventoryDto>>().Result;
 
             ViewModel.RelatedInventories = RelatedInventories;
+
+            //Showcase all the purchases related to this pantry item
+            //send a request to gather info about purchases realted to a specific pantry item id
+
+            url = "PurchaseData/ListPurchasesForPantryItem/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<PurchaseDto> RelatedPurchases = response.Content.ReadAsAsync<IEnumerable<PurchaseDto>>().Result;
+
+            ViewModel.RelatedPurchases = RelatedPurchases;
 
             return View(ViewModel);
         }
