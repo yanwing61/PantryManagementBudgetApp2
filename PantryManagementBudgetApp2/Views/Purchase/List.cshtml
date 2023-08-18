@@ -1,0 +1,14 @@
+@model IEnumerable<PantryManagementBudgetApp2.Models.PurchaseDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Purchases</h2>
+<a href="/Purchase/New">Add new purchase</a>
+@foreach(var purchase in Model)
+{
+    <hr />
+    <h3><a href="/Purchase/Details/@purchase.PurchaseId">@purchase.PeriodYear-@purchase.PeriodMonth</a></h3>
+    <div>Your net worth this month is <strong>$@(purchase.ChequingAcct + purchase.SavingsAcct - purchase.RevolvingCrdt - purchase.InstalmentCrdt)</strong></div>
+    <div><a href="/Purchase/Details/@purchase.PurchaseId">View detailed breakdown &raquo;</a></div>
+}

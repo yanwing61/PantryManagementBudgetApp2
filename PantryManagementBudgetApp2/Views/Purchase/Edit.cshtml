@@ -1,0 +1,39 @@
+@model PantryManagementBudgetApp2.Models.ViewModels.UpdatePurchase
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Purchase</h2>
+
+<form action="/Purchase/Update/@Model.SelectedPurchase.PurchaseId" method="post">
+    <div style="display:none">
+        @* Pass through purchase ID *@
+        <input type="text" name="PurchaseId" value="@Model.SelectedPurchase.PurchaseId" />
+    </div>
+
+    <div>
+        <label>Period:</label>
+        <select name="PeriodId">
+            @foreach (var periods in Model.PeriodOptions)
+            {
+                <option value="@periods.PeriodId">@periods.PeriodYear-@periods.PeriodMonth</option>
+            }
+        </select>
+
+    </div>
+    <div>
+        <label>Chequing Account:</label> <input type="number" name="ChequingAcct" value="@Model.SelectedPurchase.ChequingAcct" />
+    </div>
+    <div>
+        <label>Savings Account:</label> <input type="number" name="SavingsAcct" value="@Model.SelectedPurchase.SavingsAcct" />
+    </div>
+    <div>
+        <label>Revolving Credit:</label> <input type="number" name="RevolvingCrdt" value="@Model.SelectedPurchase.RevolvingCrdt" />
+    </div>
+    <div>
+        <label>Instalment Credit:</label> <input type="number" name="InstalmentCrdt" value="@Model.SelectedPurchase.InstalmentCrdt" />
+    </div>
+    <div>
+        <input type="submit" value="Update Purchase" />
+    </div>
+</form>
